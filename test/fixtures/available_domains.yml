@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  crawl_id: 1
+  anchor_texts: MyText
+
+two:
+  crawl_id: 1
+  anchor_texts: MyText

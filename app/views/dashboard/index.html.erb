@@ -1,0 +1,195 @@
+<div class="main_page_container">
+	<div class='container-fluid header_title_container'>
+		<div class='row'>
+			<div class='col-xs-12'>
+				<div class="header_title_content">
+					<div class='header_glyph'>
+						<span class='glyphicon glyphicon-stats' aria-hidden="true"></span>
+					</div>
+					<div class='header_text'>
+						<p>This Weeks Daily Activity</p>
+					</div>
+				</div>
+				
+				<%= link_to 'Help & Support', 'http://source-wave.com/support', class: 'pull-right' %>
+				
+			</div>
+		</div>
+	</div>
+	
+	<div class='container-fluid container_section'>
+		<div class='row'>
+			<div class='col-xs-12'>
+				<%= render 'layouts/flash_errors' %>
+			</div>
+		</div>
+	</div>
+
+  <%= render 'tips_modal' %>
+	
+	
+	<% if !current_user.subscription.nil? %>
+		<% if current_user.subscription.status == 'canceled' %>
+			<div class='container-fluid container_section'>
+				<div class='row'>
+					<div class='col-xs-12'>
+						<div class="alert alert-success text-center" role="alert">
+							<%= link_to 'Click Here To Sign Up For A 3 Day Free Trial To Source Revive!', reactivate_path %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+	
+	<% if current_user.subscribed? %>
+		<% if current_user.subscription.plan_id == 1 %>
+			<div class='container-fluid container_section'>
+				<div class='row'>
+					<div class='col-xs-12'>
+						<%= render 'minutes/used_minutes' %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+	
+	
+	<!-- <div class='container-fluid container_section'>
+		<div class='row'>
+
+			<div class='col-xs-12 text-center'>
+						<div class='panel'>
+							<div class='panel-body'>
+								<div class='row'>
+
+									<div class='col-xs-3 dashboard_stats_container'>
+										<div class='title_text'>
+											<p>DOMAINS CRAWLED</p>
+										</div>
+										<div class='row'>
+											<div class='stat_circle_container glyph_blue'>
+												<%= @dashboard.domains_crawled.to_i %>
+											</div>
+										</div>
+									</div>
+
+									<div class='col-xs-3 dashboard_stats_container'>
+										<div class='title_text'>
+											<p>BROKEN DOMAINS</p>
+										</div>
+										<div class='row'>
+											<div class='stat_circle_container glyph_blue'>
+												<%= @dashboard.domains_broken.to_i %>
+											</div>
+										</div>
+									</div>
+
+									<div class='col-xs-3 dashboard_stats_container'>
+										<div class='title_text'>
+											<p>EXPIRED DOMAINS</p>
+										</div>
+										<div class='row'>
+											<div class='stat_circle_container glyph_blue'>
+												<%= @dashboard.domains_expired.to_i %>
+											</div>
+										</div>
+									</div>
+
+									<div class='col-xs-3 dashboard_stats_container'>
+										<div class='title_text'>
+											<p>Pending / Running / Done</p>
+										</div>
+										<div class='row'>
+											<div class='stat_circle_container glyph_blue'>
+												<%= @dashboard.pending_crawlers.to_i %> /
+												<%= @dashboard.running_crawlers.to_i %> /
+												<%= @dashboard.done_crawlers.to_i  %>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+		</div>
+	</div> -->
+	
+	<!-- <div class='container-fluid container_section'>
+		<div class='col-xs-12'>
+			<div class="alert alert-warning text-center" role="alert">Due to so many people taking our trial offer one of our databases overloaded causing a slight lag in crawls, we have fixed the issues and your crawls will run normally again. Thanks! -Revive Dev Team</div>
+		</div>
+	</div> -->
+	
+	<div class='container-fluid container_section'>
+		<div class='col-xs-12'>
+			
+			<% if current_user.crawls.count <= 1000 %>
+				
+					<div class='panel panel-round'>
+						<div class='panel-heading panel_blue_heading panel_glyph_container'>
+							<div class='header_glyph'>
+								<span class='glyphicon glyphicon-ok' aria-hidden="true"></span>
+							</div>
+							<div class='header_text'>
+								<p>Marketplace Tutorials</p>
+							</div>
+						</div>
+						<div class='panel-body'>
+							<%= render 'marketplace_getting_started_videos' %>
+						</div>
+					</div>
+					<div class='panel panel-round'>
+						<div class='panel-heading panel_blue_heading panel_glyph_container'>
+							<div class='header_glyph'>
+								<span class='glyphicon glyphicon-ok' aria-hidden="true"></span>
+							</div>
+							<div class='header_text'>
+								<p>Tutorials</p>
+							</div>
+						</div>
+						<div class='panel-body'>
+							<%= render 'getting_started_videos' %>
+							<div class='btn-block free_uni_btn'>
+								<%= link_to 'Begin Your Free Month At Source University Here', 'http://source-wave.com/university/enrollment/?rid=p8S0Cx', class:'btn btn-lg btn-block btn-success free_uni_btn_link' %>
+								<%#= link_to 'Start Crawling', new_crawl_path, class:'btn btn-lg btn-block btn-success' %>
+							</div>
+						</div>
+					</div>
+				
+			<% end %>
+		</div>
+	</div>
+	
+	
+	
+	<%#= render 'top_domains' %>
+	
+	<div class='row'>
+		<div class='col-xs-12'>
+			<div class='row'>
+				<div class='col-xs-12'>
+					<div class='btn-block start_crawling_btn'>
+						<%= link_to 'Start Crawling', new_crawl_path, class:'btn btn-lg btn-block btn-success start_crawling_btn_link' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<script type="text/javascript" src="https://sourcewave.iljmp.com/improvely.js"></script>
+<script type="text/javascript">
+improvely.init('sourcewave', 36);
+improvely.conversion({
+    goal: 'sale',
+    revenue: 9.95,
+    reference: '123'
+});
+</script>
+<noscript>
+<img src="https://sourcewave.iljmp.com/track/conversion?project=36&goal=sale&revenue=9.95&reference=123" width="1" height="1" />
+</noscript>

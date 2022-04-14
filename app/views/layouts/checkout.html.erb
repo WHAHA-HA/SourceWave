@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Source Revive</title>
+  <%= stylesheet_link_tag    "checkout", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "https://js.stripe.com/v2/", "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+
+  <script type="text/javascript" src="https://static.leaddyno.com/js"></script>
+  <script>
+  LeadDyno.key = "9b0ddaf9be6a5205ac0da12e47965960ffec33d6";
+  LeadDyno.recordVisit();
+  LeadDyno.autoWatch();
+  </script>
+
+</head>
+<body id="<%=params[:controller]%>" class="<%=params[:action]%>">
+
+	<%= yield %>
+	<%= render 'footer/footer_links' %>
+
+
+
+</body>
+</html>

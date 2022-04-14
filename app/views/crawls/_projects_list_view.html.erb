@@ -1,0 +1,83 @@
+
+					<div class="panel panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							
+							<div class="header_glyph">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							</div>
+							<div class="header_text">
+								<p>Crawls</p>
+							</div>
+							
+						</div>
+						<div class="panel-body">
+							
+							<table class="table table-hover table-striped">
+								
+								<thead>
+									<tr>
+										<!-- <th></th> -->
+										<th class='col-xs-3'>NAME</th>
+										<th class="text-center">SITES</th>
+										<th class="text-center">URLS</th>
+										<th class="text-center">BROKEN</th>
+										<th class="text-center">AVAILABLE</th>
+										<th class="text-center">STATUS</th>
+										<th class="text-center"></th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+									<% @crawls.each do |crawl| %>
+										
+										<tr>
+											<!-- <td>
+												<span class="glyphicon glyphicon-trash glyph_pink" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+											</td> -->
+
+											<td><%= link_to crawl.name, crawl_path_path(crawl.id, 'processor_name' => crawl.processor_name), class: 'blue_text' %></td>
+											<td class="text-center blue_text"><%= crawl.total_sites %></td>
+											<td class="text-center blue_text"><%= crawl.total_urls_found %></td>
+											<td class="text-center">
+												<%= link_to crawl.total_broken.to_i, broken_path(crawl.id, 'processor_name' => crawl.processor_name), class: 'blue_text' %>
+											</td>
+											<td class="text-center">
+												<%= link_to crawl.total_expired.to_i, available_path(id: crawl.id, 'processor_name' => crawl.processor_name), class: 'blue_text' %>
+											</td>
+											<td class="text-center blue_text"><%= crawl.status %></td>
+
+											<td>
+												
+												<% if crawl.status == 'running' %>
+													
+													<%= link_to "Stop", stop_crawl_path(crawl.id, 'processor_name' => crawl.processor_name), data: {confirm: "Are you sure?"}, class: 'btn btn-warning btn-sm' %>
+													
+												<% else %>
+												
+													<%= link_to "Delete", delete_crawl_path(crawl.id, 'processor_name' => crawl.processor_name), data: {confirm: "Are you sure?"}, class: 'btn btn-danger btn-sm' %>
+												
+												<% end %>
+												
+												<%#= link_to "View", crawl_path_path(crawl.id, 'processor_name' => crawl.processor_name), class: 'btn btn-primary btn-sm'%>
+												<%= link_to "VIEW", available_path(id: crawl.id, 'processor_name' => crawl.processor_name), class: 'btn btn-primary btn-sm' %>
+												
+											</td>
+										</tr>
+										
+									<% end %>
+									
+								</tbody>
+
+							</table>
+							
+							<!-- <div class="will_paginate_container text-center">
+								<%#= will_paginate @sites, renderer: BootstrapPagination::Rails %>
+							</div> -->
+							
+						</div>
+					</div>
+					
+
+

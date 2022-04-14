@@ -1,0 +1,112 @@
+<div class="main_page_container">
+	
+	<div class='container-fluid container_section'>
+		<div class='col-xs-12'>
+			
+			<div class='panel panel-round'>
+				<!-- <div class='panel-heading panel_blue_heading panel_glyph_container'>
+					<div class='header_glyph'>
+						<span class='glyphicon glyphicon-ok' aria-hidden="true"></span>
+					</div>
+					<div class='header_text'>
+						<p>Tutorials</p>
+					</div>
+				</div> -->
+				<div class='panel-body'>
+					
+					<div class="row">
+						<div class='thank_you_img text-center'>
+							<%= image_tag 'thank_you.jpg', width: '700' %>
+						</div>
+						
+						<div class='text-center'>
+							<% if @domain_bought && @domain_bought.has_url? %>
+								<h2 class='ubuntu'><%= @domain_bought.url %> is now yours!!!</h2>
+							<% end %>
+							
+							<div class='col-xs-1'></div>
+							<div class='col-xs-10'>
+								<p>
+									If you have questions or need help with this domain please contact the seller at <%= @domain_bought.seller_paypal_email %>. Billing issues can also be handled at Paypal directly with the seller at the email <%= @domain_bought.seller_paypal_email %>
+								</p>
+							</div>
+							<div class='col-xs-1'></div>
+							
+						</div>
+					</div>
+					
+
+					
+					<div class='row thank_you_content_container'>
+						<div class='col-xs-12'>
+							<div class='row'>
+								<div class='col-xs-6 '>
+									
+									<div class='leave_review_text ubuntu'>
+										<p>Please leave a review before completing your purchase</p>
+									</div>
+									
+									<div class='user_feedback_form'>
+						
+										<%= form_for current_user, url: {controller: 'domains_cart', action: 'leave_review'}, method: :post do |f| %>
+										
+											<%= f.hidden_field :seller_id, value: @domain_bought.seller_id %>
+							
+											<!-- <%# 5.downto(1) do |i| %>
+												<div class="user_rating_feedback_container">
+													<div class='user_rating_feedback_radio_btn pull-left'>
+														<%#= f.radio_button :rating, i, checked: (i==5 ? true : false) %>
+													</div>
+													<div class='user_rating_feedback_stars'>
+														<%#= RenderStars.new(i, 30).render_stars %>
+													</div>
+												</div>
+											<%# end %> -->
+											
+											<div class='row'>
+												<div class='col-xs-6'>
+													<div class='user_rating_feedback_radio_btn pull-left'>
+														<%= f.radio_button :rating, 'thumbs_up', checked: true %>
+													</div>
+													<div>
+														<span class="glyphicon glyphicon-thumbs-up thumb-rating-glyphicon thumb-up-rating-glyphicon" aria-hidden="true"></span>
+													</div>
+												</div>
+												
+												<div class='col-xs-6'>
+													<div class='user_rating_feedback_radio_btn pull-left'>
+														<%= f.radio_button :rating, 'thumbs_down' %>
+													</div>
+													<div>
+														<span class="glyphicon glyphicon-thumbs-down thumb-rating-glyphicon thumb-down-rating-glyphicon" aria-hidden="true"></span>
+													</div>
+												</div>
+											</div>
+							
+										
+						
+									</div>
+									
+								</div>
+								<div class='col-xs-6 thank_you_btns'>
+									
+									<div class='btn-block start_crawling_btn'>
+										<%= f.submit 'Buy More Domains', class:'btn btn-lg btn-block btn-success start_crawling_btn_link' %>
+									</div>
+									
+									<div class='btn-block start_crawling_btn'>
+										<%= f.submit 'View Purchased Domains', class:'btn btn-lg btn-block btn-success start_crawling_btn_link' %>
+									</div>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+</div>

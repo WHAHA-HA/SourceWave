@@ -1,0 +1,119 @@
+<div class="main_page_container">
+	
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+					
+					
+					<!-- TABS -->
+					
+						<div class="tabbable-panel">
+						<div class="tabbable-line">
+							<ul class="nav nav-tabs ">
+			
+								<li>
+									<%= link_to crawl_path_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-stats">
+											<span class="glyph_text">Dashboard</span>
+										</i>
+									<% end %>
+								</li>
+			
+								<li >
+									<%= link_to broken_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-ban-circle">
+											<span class="glyph_text">Broken</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li >
+									<%= link_to available_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-ok">
+											<span class="glyph_text">Available</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li>
+									<%= link_to bookmarked_sites_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-bookmark">
+											<span class="glyph_text">Bookmarked</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li class="active">
+									<%= link_to edit_crawl_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-bookmark">
+											<span class="glyph_text">Settings</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<% if @project.status != 'finished' %>
+									
+									<div class="pull-right">
+										<%= link_to 'Stop Crawl', stop_crawl_path(@project.id, 'processor_name' => @project.processor_name), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+									</div>
+									
+								<% else %>
+								
+									<div class="pull-right">
+										<%= link_to 'Delete Project', delete_crawl_path(@project.id, 'processor_name' => @project.processor_name), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+									</div>
+									
+								<% end %>
+			
+							</ul>
+							
+
+							
+						</div>
+						
+					</div>
+					
+					<!-- TABS -->
+					
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid container_section">
+	
+		<div class="row">
+
+			<div class="col-xs-12">
+	
+				<div class="row">
+			
+					<div class="panel panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							<div class='header_text'>
+								<p>Settings</p>
+							</div>
+						</div>
+						<div class="panel-body">
+							
+							<% if @project.crawl_type == 'url_crawl' %>
+								<%= render 'url_edit' %>
+							<% else %>
+								<%= render 'keyword_edit' %>
+							<% end %>
+							
+						</div>
+					</div>
+			
+				</div>
+	
+			</div>
+
+		</div>
+	
+	</div>
+
+</div>

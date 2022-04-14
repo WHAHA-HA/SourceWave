@@ -1,0 +1,42 @@
+<div class="signup_form_container">
+
+	<h1>Reset Password</h1>
+
+	<%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
+		
+
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :password %>
+			</div>
+			
+			<div class="field">
+				<%= f.password_field :password, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :password_confirmation %>
+			</div>
+			
+			<div class="field">
+				<%= f.password_field :password_confirmation, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container text-center pink_form_submit_btn_container">
+			
+			<div class="field_label">
+				<%= f.submit "Update Password", class: 'btn pink_form_submit_btn' %>
+			</div>
+			
+		</div>
+		
+	<% end %>
+	
+</div>

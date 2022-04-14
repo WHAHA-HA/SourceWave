@@ -1,0 +1,17 @@
+<% minutes_used = ((current_user.minutes_used.to_f/current_user.minutes_available.to_f)*100).to_f %>
+
+<div class="row">
+	<div class="col-xs-12 minutes_used_footer_container">
+		<h4 class="nopadding used_minutes_title pull-left">Minutes</h4>
+		<h4 class="nopadding used_minutes_title pull-right">
+			<%= current_user.minutes_used.to_i %> of <%= current_user.minutes_available.to_i %> minutes used
+		</h4>
+
+	</div>
+</div>
+
+<div class="progress">
+	<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%= minutes_used %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= minutes_used %>%">
+	<span class="sr-only"><%= minutes_used %>% Minutes Used</span>
+	</div>
+</div>

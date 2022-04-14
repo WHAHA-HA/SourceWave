@@ -1,0 +1,75 @@
+<div class='panel-container'>
+  <div class="panel panel-default panel-success">
+    <div class='panel-heading panel_blue_heading white_text'>
+      <div class='row'>
+        <div class='col-xs-6 col-sm-6'>
+          <h3 class='panel-title'>Subscription Plan</h3>
+        </div>
+        <div class='col-xs-6 col-sm-6'>
+          <h3 class='pull-right panel-title'>
+            <%= @current_user.subscription.status.capitalize %>
+            <% if @current_user.subscription.status == 'active' && !@current_user.subscription.cancel_date.nil? %>
+               Until <%= @current_user.subscription.cancel_date.strftime('%m-%d-%y') %>
+            <% end %>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class='panel-body'>
+      <div class='row'>
+        <div class='col-xs-6 col-sm-6'>
+          <h3><%= @current_user.subscription.plan_name.to_s %></h3>
+        </div>
+        <div class='col-xs-6 col-sm-6'>
+          <h3 class='pull-right'>
+            <% if @current_user.subscription.stripe_customer_token == '0' %>
+              <%= number_to_currency(0) %>
+            <% else %>
+              <%= number_to_currency(@current_user.subscription.plan.price) %>
+            <% end %>
+          </h3>
+        </div>
+      </div>
+      <div class='limit-container'>
+        <div class='limit'>
+          <p>Minutes Available</p>
+          <p><%= (@plan.minutes_per_month.to_f-@user.minutes_used.to_f).to_i %></p>
+        </div>
+        <div class='limit'>
+          <p>Crawls At Once</p>
+          <p><%= @plan.crawls_at_the_same_time %></p>
+        </div>
+        <div class='limit'>
+          <p>Pages Per Crawl</p>
+          <p><%= @plan.pages_per_crawl %></p>
+        </div>
+      </div>
+      <% unless @current_user.subscription.stripe_customer_token == '0' %>
+        <div class='row'>
+            <% if @current_user.subscription.active? && @current_user.subscription.cancel_date.nil? && !@current_user.subscription.failed_transaction? %>
+              <div class='col-lg-6'>
+                <%= link_to 'Unsubscribe', subscriptions_path, method: :delete, class:'btn btn-danger btn-lg btn-block', data:{disable_with:'Working Magic..' } %>
+              </div>
+              <div class='col-lg-6'>
+                <%= link_to 'Change Plan', upgrade_plan_path, class:'btn btn-default btn-lg btn-block' %>
+              </div>
+            <% elsif @current_user.subscription.active? && !@current_user.subscription.cancel_date.nil? && !@current_user.subscription.failed_transaction? %>
+              <div class="col-lg-12">
+                <%= link_to 'Reactivate Subscription', subscriptions_path, method: :put, class:'btn btn-success btn-lg btn-block', data:{disable_with:'Working Magic..' } %>
+              </div>
+            <% elsif @current_user.subscription.failed_transaction?  %>
+              <div class='col-sm-12'>
+                  <%= link_to 'Update Subscription', upgrade_plan_path(update_card: true), method: :get, class:'btn btn-success btn-lg btn-block' %>
+              </div>
+            <% else %>
+              <div class="col-lg-12">
+                <%= link_to 'Reactivate Subscription', subscriptions_path, method: :put, class:'btn btn-success btn-lg btn-block', data:{disable_with:'Working Magic..' } %>
+              </div>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>

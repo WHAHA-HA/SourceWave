@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_id: 1
+  started_at: 2015-01-28 06:09:40
+  finished_at: 2015-01-28 06:09:40
+  batch_id: MyString
+
+two:
+  site_id: 1
+  started_at: 2015-01-28 06:09:40
+  finished_at: 2015-01-28 06:09:40
+  batch_id: MyString

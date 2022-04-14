@@ -1,0 +1,7 @@
+# development:
+#   host: 'localhost'
+#   port: '6379'
+#
+# production:
+#   host: "crawler-001.jbgg89.0001.use1.cache.amazonaws.com:6379"
+#   port: "6379"

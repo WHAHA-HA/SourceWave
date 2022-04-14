@@ -1,0 +1,79 @@
+<div class="main_page_container">
+	
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+					<div class="header_glyph">
+						<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+					</div>
+					<div class="header_text">
+						<p>Found Avalible Domains</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid container_section">
+	
+		<div class="row">
+		
+			<div class="col-xs-12">
+			
+				<div class="row">
+					
+					<div class="panel panel-default">
+						<div class="panel-heading panel_pink_heading">
+							
+						</div>
+						<div class="panel-body">
+							
+							<table class="table table-hover table-striped">
+								
+								<thead>
+									<tr>
+										<th></th>
+										<th>DOMAIN</th>
+										<th>PROJECT</th>
+										<th>TF</th>
+										<th>D/A</th>
+										<th>L</th>
+										<th>D</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+									<% @internal.each do |i| %>
+										<tr>
+											<td>
+												<span class="glyphicon glyphicon-trash glyph_pink" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+											</td>
+											<td><%= i.url %></td>
+											<td><%= @site.base_url %></td>
+											<td>4</td>
+											<td>-</td>
+											<td>-</td>
+											<td>-</td>
+										</tr>
+									<% end %>
+									
+									
+								</tbody>
+								
+							</table>
+							
+						</div>
+					</div>
+					
+				</div>
+			
+			</div>
+		
+		</div>
+	
+	</div>
+
+</div>

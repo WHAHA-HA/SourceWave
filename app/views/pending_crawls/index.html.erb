@@ -1,0 +1,89 @@
+<div class="main_page_container">
+	
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+					<!-- TABS -->
+				
+					<div class="tabbable-panel">
+						<div class="tabbable-line">
+							<ul class="nav nav-tabs ">
+								<li>
+									<%= link_to crawls_path do %>
+									    <i class="glyphicon glyphicon-folder-open">
+											<span class="glyph_text">Projects</span>
+										</i>
+									<% end %>
+								</li>
+
+							
+								<li >
+									<%= link_to running_crawls_path do %>
+									    <i class="glyphicon glyphicon-refresh">
+											<span class="glyph_text">Running</span>
+										</i>
+									<% end %>
+								</li>
+
+								
+								<div class="header_button pull-right">
+									<p><%= link_to "CREATE NEW", new_project_path, class: 'btn btn-success btn-sm' %></p>
+								</div>
+							</ul>
+						</div>
+					</div>
+				
+					<!-- TABS -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid container_section pending-crawls-list-container">
+		
+		<div class="row">
+			<div class='col-xs-12'>
+<%= render 'minutes/used_minutes' %>
+        <div class="page-header">
+          <h3>Click and drag to sort the order</h3>
+        </div>
+        <ul class="pending-crawls-container" data-update-url="<%= sort_pending_crawls_url %>">
+					<% @crawls.each do |c| %>
+
+						<% if c.crawl %>
+							<%= content_tag_for :li, c do %>
+								<div class='row'>
+									<div class='handle_div col-xs-1'>
+										<span class="handle glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+									</div>
+									<div class='name col-xs-3'>
+										<%= c.crawl.name %>
+									</div>
+									<div class='name col-xs-2'>
+										Pages Per Site: <%= c.crawl.maxpages %>
+									</div>
+									<div class='name col-xs-2'>
+										Type: <%= c.crawl.crawl_type %>
+									</div>
+									<div class='name col-xs-1 pull-right'>
+										<%= link_to "Delete", crawl_path(c.id, 'processor_name' => c.processor_name), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: "Are you sure?" } %>
+									</div>
+									<!-- <div class='name col-xs-1 pull-right'>
+										<%= link_to "Edit", '#', class: 'btn btn-warning btn-sm' %>
+									</div> -->
+									<div class='name col-xs-1 pull-right'>
+										<%= link_to "Start", start_crawl_path('processor_name' => c.processor_name), class: 'btn btn-success btn-sm'%>
+									</div>
+								</div>
+							<% end %>
+						<% end %>
+						
+					<% end %>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,74 @@
+<div class="main_page_container">
+	<div class="container-fluid container_section">
+    <%= render 'layouts/flash_errors' %>
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="row">
+					<div class="panel panel-default panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							<div class="header_text">
+								<p>Maintenance Message</p>
+							</div>
+					</div>
+					<div class="panel-body">
+							<%= form_for @maintenance, url: maintenance_admins_path, method: :put do |f| %>
+								<%= f.hidden_field :id %>
+								<%= f.check_box :enabled %> Enable Maintenance Message<br><br>
+								Message:<br>
+								<%= f.text_area :message, size: '52x10' %><br>
+								<%= f.button 'Update', class: 'btn btn-primary' %>
+							<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="col-xs-8">
+				<div class="row">
+					<div class="panel panel-default panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							<div class="header_text">
+								<p>Users</p>
+							</div>
+              <%= form_tag admins_path, method: :get, class: 'pull-right find-user' do %>
+                <%= text_field_tag :query, params[:query], placeholder: 'Find User', class: '' %>
+              <% end %>
+						</div>
+						<div class="panel-body">
+							<%= link_to 'Create New User', new_user_admins_path, class: 'btn btn-danger pull-right', remote: true %>
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th class='tracked'>Email</th>
+                    <th class="text-center">Login as user</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @users.each do |u| %>
+                    <tr>
+                      <td><%= u.email %></td>
+                      <td class='text-center'><%= link_to 'Login', become_user_admins_path(user_id: u.id), class: 'btn btn-default' %></td>
+                      <td class='text-center'>
+                        <%= link_to 'Edit user', edit_user_admins_path(user_id: u.id), class: 'btn btn-primary', remote: true %>
+												<%= activate_deactivate(u) %>
+											</td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class='row'>
+            <div class="text-center">
+             <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= modal({id: 'edit-user-modal'}, 'Edit User') do %>
+<% end %>
+<%= modal({id: 'new-user-modal'}, 'Create New User') do %>
+<% end %>

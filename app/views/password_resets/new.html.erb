@@ -1,0 +1,35 @@
+<div class='revive_top_nav_header_container'>
+	<div class='revive_top_nav_logo text-center'>
+		<a class="navbar-brand" href="/">REV⚕VE</a>
+	</div>
+</div>
+
+<div class="login_form_container">
+	
+	<h1 class='text-center'>Reset Password</h1>
+	
+	<%= form_tag password_resets_path, method: :post do%>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= label_tag :email %>
+			</div>
+			
+			<div class="field">
+				<%= text_field_tag :email, '', class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container text-center pink_form_submit_btn_container">
+			
+			<div class="field_label">
+				<%= submit_tag "Reset Password", class: 'btn pink_form_submit_btn' %>
+			</div>
+			
+		</div>
+		
+	<% end %>
+	
+</div>

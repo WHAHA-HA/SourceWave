@@ -1,0 +1,23 @@
+<div class="tabbable-panel">
+	<div class="tabbable-line">
+		<ul class="nav nav-tabs ">
+			
+			<li class="active">
+				<%= link_to '#' do %>
+				    <i class="glyphicon glyphicon-stats">
+						<span class="glyph_text">Dashboard</span>
+					</i>
+				<% end %>
+			</li>
+			
+			<li >
+				<%= link_to domains_path(@project.id) do %>
+				    <i class="glyphicon glyphicon-list-alt">
+						<span class="glyph_text">Sites</span>
+					</i>
+				<% end %>
+			</li>
+			
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<footer>
+  <div class="wrap">
+    <div class="flex">
+      <p class="copyright">Revive &copy; <%= Date.today.strftime('%Y') %></p>
+
+      <ul class="menu">
+        <% if current_page?(controller: 'sales', action: 'index') %>
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Domain Marketplace', marketplace_lp_path %></li>
+          <li><%= link_to 'Support', 'http://source-wave.com/support' %></li>
+          <li><%= link_to 'Login', login_path %></li>
+          <li><%= link_to 'Register', plans_path %></li>
+        <% else %>
+          <li><%= link_to "Privacy Policy", "#" %></li>
+          <li><%= link_to "Terms & Refunds", terms_path %></li>
+          <li><%= link_to "Earning Disclaimer", earnings_disclaimer_path %></li>
+          <li><%= link_to "General Disclaimer", general_disclaimer_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</div>
+</div>

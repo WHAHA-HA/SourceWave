@@ -1,0 +1,106 @@
+	<div class="container-fluid container_section">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="panel panel-success panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							<div class='header_text'>
+								<p>Add Domain To Marketplace</p>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="new_project_form_container">
+	
+								<%= form_for @domain, url: {controller: 'domains_for_sale', action: 'create'}, method: :post do |f| %>
+									
+									<%= f.hidden_field :domain_id, value: params[:domain_id] %>
+									<%= f.hidden_field :processor_name, value: params[:processor_name] %>
+									<%= f.hidden_field :crawl_id, value: params[:crawl_id] %>
+									<%= f.hidden_field :url, value: params[:url] %>
+									
+									<div class='row'>
+										<div class='col-xs-12'>
+											<div class="field_container">
+			
+												<div class="field_label">
+													<%= f.label :price, 'Price' %>
+												</div>
+			
+												<div class="field">
+													<%= f.text_field :price, class: "form-control" %>
+												</div>
+			
+											</div>
+										</div>
+									</div>
+									
+									<div class='row'>
+										
+										<div class='col-xs-6'>
+											<div class="field_container">
+			
+												<div class="field_label">
+													<%= f.label :seller_notes, 'Seller Notes' %>
+												</div>
+			
+												<div class="field">
+													<%= f.text_area :seller_notes, class: "form-control", :rows => "7" %>
+												</div>
+			
+											</div>
+										</div>
+										
+
+										<div class='col-xs-6'>
+											
+											<div class='field_container'>
+												<div class='row'>
+												
+													<div class='col-xs-8'>
+														<div class="field_label">
+															<%= f.label :seller_notes, 'Refund Guarantee' %>
+														</div>
+														
+														<div>
+															<p>Click the checkbox below to let the person who buys from you that you are a trusted seller and that you guarantee their satisfaction with a 100% refund policy when they purchase a domain from you. We will show the seal on the right in the marketplace to let the buyer know this domain is guaranteed by the seller. Domains that are guaranteed by the seller also have a higher chance of selling.</p>
+														</div>
+														
+														<div>
+															
+															<div class='guarantee_domain_checkbox'><%= f.check_box :guaranteed %></div>
+															<div>Yes i would like to guarantee my domain.</div>
+															
+														</div>
+													</div>
+												
+													<div class='col-xs-4'>
+														<%= image_tag "guarantee_seal.png", width: '100' %>
+													</div>
+												
+												</div>
+											</div>
+											
+										</div>					
+										
+									</div>
+									
+									<div class="field_container text-center pink_form_submit_btn_container">
+			
+										<div class="btn-block start_crawling_btn">
+											<%= f.submit "Add To Marketplace", class: 'btn btn-lg btn-block btn-success start_crawling_btn_link' %>
+										</div>
+			
+									</div>
+
+								<% end %>
+	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+

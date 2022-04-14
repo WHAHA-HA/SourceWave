@@ -1,0 +1,157 @@
+<div class="main_page_container">
+
+	<%= render 'nav/marketplace' %>
+	
+	<div class="container-fluid">
+		<%= content_tag :div, notice, class: 'bg-success' %>
+		<%= content_tag :div, alert, class: 'bg-danger' %>
+	</div>
+
+	<div class="container-fluid container_section">
+		
+
+					<div class="panel panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							
+							<div class="header_glyph">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							</div>
+							<div class="header_text">
+								<p>Marketplace</p>
+							</div>
+							
+						</div>
+						<div id="marketplace-domains-table" class="panel-body">
+							
+							<table class="table table-hover table-striped">
+								
+								<thead>
+									<tr>
+										<th class='col-xs-1'>URL</th>
+										<th class='col-xs-1'><%= link_to 'PRICE', marketplace_index_path(sort: 'price', order: 'desc') %></th>
+										<th><%= link_to 'TF', marketplace_index_path(sort: 'trustflow') %></th>
+										<th><%= link_to 'CF', marketplace_index_path(sort: 'citationflow') %></th>
+										<th><%= link_to 'DA', marketplace_index_path(sort: 'da') %></th>
+										<th><%= link_to 'PA', marketplace_index_path(sort: 'pa') %></th>
+										<th><%= link_to 'RF', marketplace_index_path(sort: 'refdomains') %></th>
+										<th><%= link_to 'BL', marketplace_index_path(sort: 'backlinks') %></th>
+										<th class='col-xs-2'><%= link_to 'User Rating', marketplace_index_path(sort: 'thumbs_up_count') %><span class='span_vertical_break'>|</span> <%= image_tag "guarantee_thumb.png", width: '20', class: 'refund_guarantee_tooltip', data: {'toggle' => 'tooltip', 'original-title' => 'Refund Guarantee'} %></th>
+										<th class='col-xs-1'></th>
+										<th class='col-xs-1'></th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+									<% @domains.each do |domain| %>
+										
+										<tr>
+											<% if current_user && current_user.admin? %>
+												<td><%= link_to domain.url, "http://whois.domaintools.com/#{domain.url}", target: 'blank' %></td>
+											<% else %>
+												<td>*****.<%= domain.suffix %></td>
+											<% end %>
+											
+											
+											<% if (current_user && current_user.has_basic_subscription?) && domain.price < 20 %>
+												<td>$20.00</td>
+											<% else %>
+												<td>$<%= number_with_precision(domain.price, precision: 2) %></td>
+											<% end %>
+											<td><%= number_with_precision(domain.trustflow, precision: 0) %></td>
+											<td><%= number_with_precision(domain.citationflow, precision: 0) %></td>
+											<td><%= number_with_precision(domain.da, precision: 0) %></td>
+											<td><%= number_with_precision(domain.pa, precision: 0) %></td>
+											<td><%= domain.refdomains %></td>
+											<td><%= domain.backlinks %></td>
+											<!-- <td><%#= RenderStars.new(domain.user_rating).render_stars  %></td> -->
+											<td>
+												<div>
+													<div class='pull-left marketplace_thumb_container'>
+														<div class='pull-left marketplace_thumb_icon'>
+															<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+														</div>
+														<div><%= domain.thumbs_up_count.to_i %></div>
+													</div>
+													<div class='pull-left marketplace_thumb_container'>
+														<div class='pull-left marketplace_thumb_icon'>
+															<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+														</div>
+														<div><%= domain.thumbs_down_count.to_i %></div>
+													</div>
+													<div>
+														<% if domain.guaranteed %>
+															<%= image_tag "guarantee_thumb.png", width: '20', class: 'refund_gurantee_img' %>
+														<% end %>
+													</div>
+												</div>
+											</td>
+								
+											<td><%= link_to 'More Info', '#', class: 'btn btn-warning btn-xs domain-more-info-btn accordion-toggle', data: {'toggle' => 'collapse', 'parent' => '#marketplace-domains-table', 'target' => ".packageDetails#{domain.id}"} %></td>
+											
+											<td><%= link_to 'Add to Cart', add_domain_to_cart_path(domain.id), method: :post, class: 'btn btn-primary btn-xs' %></td>
+										</tr>
+										
+										<tr>
+											<td class="hiddenRow" colspan='11'>
+												<%= content_tag :div, class: "accordion-body collapse packageDetails#{domain.id}", id: "accordion#{domain.id}" do  %>
+													<table>
+														<tr>
+															<div class='col-xs-6'>
+
+																<div class="panel panel-default">
+																  <div class="panel-heading">
+																	  <h3 class="panel-title">Seller Email</h3>
+																  </div>
+																  <div class="panel-body">
+																	  <p><%= domain.seller_paypal_email %></p>
+																  </div>
+																</div>
+																
+																<div class="panel panel-default">
+																  <div class="panel-heading">
+																	  <h3 class="panel-title">Seller Notes</h3>
+																  </div>
+																  <div class="panel-body">
+																	  <p class='seller_notes_p'><%= domain.seller_notes %></p>
+																  </div>
+																</div>
+															</div>
+															
+															<div class='col-xs-6'>
+																<div class="panel panel-default">
+																  <div class="panel-heading">
+																	  <h3 class="panel-title">Anchor Text</h3>
+																  </div>
+																  <div class="panel-body" style="overflow: hidden;">
+																	  <%= pie_chart(domain.graph_anchor_texts, height: '200px') %>
+																  </div>
+																</div>
+															</div>
+														</tr>
+													</table>
+												<% end %>
+											</td>
+										</tr>
+										
+										
+										
+									<% end %>
+									
+								</tbody>
+
+							</table>
+							
+						</div>
+					</div>
+					
+					<div class="will_paginate_container text-center">
+						<%= will_paginate @domains, renderer: BootstrapPagination::Rails %>
+					</div>
+	
+	</div>
+
+</div>
+
+<%= render 'filters_form' %>
+

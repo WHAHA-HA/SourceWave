@@ -1,0 +1,32 @@
+<div class="row">
+	
+	<% @crawls.each do |s| %>
+			
+			<div class="col-xs-6 crawls_index_action_stats_container">
+	
+				<div class="row">
+			
+					<div class="panel panel-round">
+						<div class="panel-heading panel_blue_heading clearfix project_panel_heading">
+							<div class="pull-left">
+								<p><%= s.name %></p>
+							</div>
+							<div class="pull-right">
+								<!-- <p><%#= link_to "VIEW", crawl_path_path(s.id, 'processor_name' => s.processor_name) %></p> -->
+								<p><%= link_to "VIEW", available_path(id: s.id, 'processor_name' => s.processor_name) %></p>
+							</div>
+						</div>
+						<div class="panel-body">
+					
+							<%= render 'project_stats', s: s %>
+					
+						</div>
+					</div>
+			
+				</div>
+	
+			</div>
+		
+	<% end %>
+
+</div>

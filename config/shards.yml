@@ -1,0 +1,92 @@
+octopus:
+  environments:
+    - development
+    - production
+  development:
+    main_shard:
+      adapter: postgresql
+      database: crawler_development
+      pool: 3
+    master:
+      adapter: postgresql
+      database: crawler_development
+      pool: 25
+    processor:
+      adapter: postgresql
+      database: crawler_development
+      pool: 25
+    processor_one:
+      adapter: postgresql
+      database: crawler_development
+      pool: 25
+    processor_two:
+      adapter: postgresql
+      database: crawler_development
+      pool: 25
+    processor_three:
+      adapter: postgresql
+      database: crawler_development
+      pool: 25
+    processor_four:
+      adapter: postgresql
+      database: crawler_development
+      pool: 25
+  production:
+    <% if ENV["DB_NAME"].present? %>
+    master:
+      <%= "adapter: postgresql" %>
+      <%= "database: #{ENV["DB_NAME"]}" %>
+      <%= "username: #{ENV["DB_USER"]}" %>
+      <%= "password: #{ENV["DB_PASS"]}" %>
+      <%= "host: #{ENV["DB_HOST"]}" %>
+      <%= "port: #{ENV["DB_PORT"]}" %>
+      pool: 25
+    <% end %>
+    main_shard:
+      adapter: postgresql
+      database: d43keikloc7ejh
+      username: uda0tbtpqg53lu
+      password: pfulh5el80spt6ehv206vs9qs1u
+      host: ec2-107-20-155-89.compute-1.amazonaws.com
+      port: 5532
+      pool: 25
+    processor:
+      adapter: postgresql
+      database: d570jqv21u9in0
+      username: u5fkjshgbhhncg
+      password: p843pa73aoj8sm9sb4pj4ol72vo
+      host: ec2-54-163-234-153.compute-1.amazonaws.com
+      port: 5432
+      pool: 30
+    processor_one:
+      adapter: postgresql
+      database: dbdfeisb2cpu9o
+      username: u42cj46ifes9mp
+      password: p7sgm4r42gq8niengm8ignn2pt7
+      host: ec2-54-163-236-202.compute-1.amazonaws.com
+      port: 5542
+      pool: 30
+    processor_two:
+      adapter: postgresql
+      database: d9po7h5a2tkblk
+      username: u4p8o1fm5l007q
+      password: p48p6ff9atah28dm360flr4g3sq
+      host: ec2-54-163-237-255.compute-1.amazonaws.com
+      port: 5502
+      pool: 30
+    processor_three:
+      adapter: postgresql
+      database: ddl8pqb6olhsh7
+      username: u1230jnk7rhe6j
+      password: p9alv86sk57jb14jed8vuuqr41h
+      host: ec2-23-21-207-111.compute-1.amazonaws.com
+      port: 5452
+      pool: 30
+    processor_four:
+      adapter: postgresql
+      database: dd2a4lld9f69j2
+      username: u7r3qia870f4ea
+      password: p6ku9ua71s44j598umh2iln6ied
+      host: ec2-54-83-29-171.compute-1.amazonaws.com
+      port: 5442
+      pool: 30

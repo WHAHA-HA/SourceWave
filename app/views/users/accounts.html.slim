@@ -1,0 +1,166 @@
+<div class="main_page_container">
+	<div class='container-fluid header_title_container'>
+		<div class='row'>
+			<div class='col-xs-12'>
+				<div class="header_title_content">
+					<div class='header_glyph'>
+						<span class='glyphicon glyphicon-stats' aria-hidden="true"></span>
+					</div>
+					<div class='header_text'>
+						<p>This Weeks Daily Activity</p>
+					</div>
+				</div>
+				
+				<%= link_to 'Help & Support', 'https://www.facebook.com/groups/1557416241176094/', class: 'pull-right' %>
+				
+			</div>
+		</div>
+	</div>
+</div>
+.container
+  .account-container
+    .row
+      .col-lg-6
+        // User Details
+        .row
+          .panel-container
+            .panel.panel-default
+              .panel-heading
+                h3.panel-title User Info
+              .panel-body
+                = form_for @user, :html => {class: 'form'} do |f|
+                  - if @user.errors.any?
+                    #error_explanation
+                      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this event from being saved:"
+                      ul
+                        - @user.errors.full_messages.each do |message|
+                          li = message
+                  .row
+                    .col-lg-12
+                      .form-group
+                        = f.label :email
+                        = f.email_field :email, :autofocus => true, placeholder: '007@MI6.gov.uk', class: 'form-control'
+                  .row
+                    .col-lg-6
+                      .form-group
+                        = f.label :password
+                        = f.password_field :password, placeholder: 'J4M35B0ND007', class: 'form-control'
+                    .col-lg-6
+                      .form-group
+                        = f.label :password_confirmation
+                        = f.password_field :password_confirmation, placeholder: 'J4M35B0ND007', class: 'form-control'
+                  .row
+                    .form-group
+                      .col-lg-12
+                        = f.submit class:'btn btn-success btn-block'
+        // Subscription
+        .row
+          .panel-container
+            .panel class="#{@user.subscription.active? ? 'panel-success' : 'panel-danger'}"
+              .panel-heading
+                .row
+                  .col-xs-6.col-sm-6
+                    h3.panel-title Subscription Plan
+                  .col-xs-6.col-sm-6
+                    h3.pull-right.panel-title =@current_user.subscription.status.capitalize
+              .panel-body
+                .row
+                  .col-xs-6.col-sm-6
+                    h3
+                      = @current_user.subscription.plan_name.to_s
+                      /= @plan.name
+                  .col-xs-6.col-sm-6
+                    h3.pull-right
+                      = @current_user.subscription.plan.price
+                      /= @plan.price
+                .limit-container
+                  .limit
+                    p Minutes Available
+                    p = (@plan.minutes_per_month.to_f-@user.minutes_used.to_f).to_i
+                  .limit
+                    p Crawls At Once
+                    p = @plan.crawls_at_the_same_time
+                  .limit
+                    p Pages Per Crawl
+                    p = @plan.pages_per_crawl
+                  / .limit
+                  /   p Crawl Speed
+                  /   p = @plan.crawl_speed
+                  / .limit
+                  /   p Expired Domains
+                  /   p = @plan.expired_domains
+                  / .limit
+                  /   p Broken Domains
+                  /   p = @plan.broken_domains
+                .row
+                  .col-lg-6
+                    - if @current_user.subscription.active?
+                      = link_to 'Unsubscribe', subscriptions_path, method: :delete, class:'btn btn-danger btn-lg btn-block', data:{disable_with:'Working Magic..' }
+                    - else
+                      = link_to 'Subscribe', subscriptions_path, method: :put, class:'btn btn-success btn-lg btn-block', data:{disable_with:'Working Magic..' }
+                  .col-lg-6
+                    = link_to 'Upgrade Plan', dashboard_path, class:'btn btn-default btn-lg btn-block', disabled: true
+      .col-lg-6
+        // Billing
+        .row
+          #subscription.panel-container
+            .panel.panel-default
+              .panel-heading
+                h3.panel-title Billing Details
+              .panel-body
+                = form_for @user, :html => {class: 'form'} do |f|
+                  - if @user.errors.any?
+                    #error_explanation
+                      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this event from being saved:"
+                      ul
+                        - @user.errors.full_messages.each do |message|
+                          li = message
+                  // First name
+                  .row
+                    .col-lg-6
+                      .form-group
+                        = f.label :first_name
+                        = f.text_field :first_name, placeholder: 'Phillip', class: 'form-control'
+                    .col-lg-6
+                      .form-group
+                        = f.label :last_name
+                        = f.text_field :last_name, placeholder: 'Sherman', class: 'form-control'
+                  .row
+                    .col-lg-12
+                      .form-group
+                        = f.label :phone
+                        = f.text_field :phone, placeholder: '123-456-7890', class: 'form-control'
+                  .row
+                    .col-lg-12
+                      .form-group
+                        = f.label :address_1
+                        = f.text_field :address_1, placeholder: '42 Wallaby Way', class: 'form-control'
+                  .row
+                    .col-lg-12
+                      .form-group
+                        = f.label :address_2
+                        = f.text_field :address_2, placeholder: 'Suite 123', class: 'form-control'
+                  .row
+                    .col-lg-4
+                      .form-group
+                        = f.label :city
+                        = f.text_field :city, placeholder: 'Sydney', class: 'form-control'
+                    .col-lg-4
+                      .form-group
+                        = f.label :state
+                        = f.text_field :state, placeholder: 'New South Wales', class: 'form-control'
+                    .col-lg-4
+                      .form-group
+                        = f.label :zip
+                        = f.text_field :zip, placeholder: '2000', class: 'form-control'
+                  .row
+                    .col-lg-12
+                      .form-group
+                        = f.label :country
+                        = f.text_field :country, placeholder: 'Australia', class: 'form-control'
+                  .row
+                    .form-group
+                      .col-lg-12
+                        = f.submit 'Update Billing Details', class:'btn btn-block btn-success'
+
+

@@ -1,0 +1,110 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.project_panel_heading {
+	padding: 10px 15px 0px 15px !important;
+//	height: 25px !important;
+	color: #fff !important;
+}
+
+.project_panel_heading a, .project_panel_heading a:hover {
+	color: #fff;
+}
+
+.project_stats_container {
+	height: 110px;
+	color: white;
+}
+
+.project_stats_container li {
+    display: inline-block;
+    *display:inline;
+	border-right: 1px solid #eee;
+}
+
+.project_stats_container li:first-child {
+	border-radius: 0px 0px 0px 5px;
+}
+
+.project_stats_container li:last-child {
+	border-right: 0;
+	border-radius: 0px 0px 5px 0px;
+}
+
+.yellow_stat {
+	background-color: #fac458;
+}
+
+.orange_stat {
+	background-color: #fa965a;
+}
+
+.blue_stat {
+	background-color: #41a5e0;
+}
+
+.green_stat {
+	background-color: #25b578;
+}
+
+.stat_title {
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 10px;
+	color: #8f8f8f;
+}
+
+.stat_value {
+	margin-top: 15px;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+// FORM
+
+.label {
+	cursor: pointer;
+}
+
+label input[type="radio"] + .radio_label {
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

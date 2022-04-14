@@ -1,0 +1,44 @@
+<div class="container-fluid header_title_container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="header_title_content">
+				<!-- TABS -->
+			
+				<div class="tabbable-panel">
+					<div class="tabbable-line">
+						<ul class="nav nav-tabs ">
+							<li class=<%= 'active' if current_page?(sites_path) %> >
+								<%= link_to sites_path do %>
+								    <i class="glyphicon glyphicon-list-alt">
+										<span class="glyph_text">Domains</span>
+									</i>
+								<% end %>
+							</li>
+
+						
+							<li class=<%= 'active' if current_page?(domains_for_sale_index_path) %> >
+								<%= link_to domains_for_sale_index_path do %>
+								    <i class="glyphicon glyphicon-shopping-cart">
+										<span class="glyph_text">Selling</span>
+									</i>
+								<% end %>
+							</li>
+							
+							<li class=<%= 'active' if current_page?(domains_sold_path) %> >
+								<%= link_to domains_sold_path do %>
+								    <i class="glyphicon glyphicon-shopping-cart">
+										<span class="glyph_text">Sold</span>
+									</i>
+								<% end %>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+			
+				<!-- TABS -->
+
+			</div>
+		</div>
+	</div>
+</div>

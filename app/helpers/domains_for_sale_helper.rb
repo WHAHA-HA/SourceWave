@@ -1,0 +1,2 @@
+module DomainsForSaleHelper
+end

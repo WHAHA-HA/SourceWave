@@ -1,0 +1,41 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.account-container
+  margin-top: 40px
+
+.panel-container
+  @extend .col-lg-12
+
+.limit-container
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-around
+  align-content: flex-start
+  align-items: center
+  .limit
+    height: 7rem
+    margin: 10px 5px
+    color: white
+    font-size: 1rem
+    text-align: center
+    border: 0.1rem $pink solid
+    border-radius: 0.5rem
+    overflow: hidden
+    p
+      color: $pink
+      padding: 0.25rem
+      font-size: 1.75rem
+      font-weight: bold
+      &:first-of-type
+        color: white
+        background: $pink
+        font-size: 16px
+        font-weight: normal
+        text-overflow: ellipsis
+        overflow: hidden
+        line-height: 25px
+        //max-height: 30px

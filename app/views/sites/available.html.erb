@@ -1,0 +1,175 @@
+<div class="main_page_container">
+
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+
+					<!-- TABS -->
+
+						<div class="tabbable-panel">
+						<div class="tabbable-line">
+							<ul class="nav nav-tabs ">
+
+								<li>
+									<%= link_to crawl_path_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-stats">
+											<span class="glyph_text">Dashboard</span>
+										</i>
+									<% end %>
+								</li>
+
+								<li >
+									<%= link_to broken_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-ban-circle">
+											<span class="glyph_text">Broken</span>
+										</i>
+									<% end %>
+								</li>
+
+								<li class="active">
+									<%= link_to available_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-ok">
+											<span class="glyph_text">Available</span>
+										</i>
+									<% end %>
+								</li>
+
+								<li>
+									<%= link_to bookmarked_sites_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-bookmark">
+											<span class="glyph_text">Bookmarked</span>
+										</i>
+									<% end %>
+								</li>
+
+								<li>
+									<%= link_to edit_crawl_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-bookmark">
+											<span class="glyph_text">Settings</span>
+										</i>
+									<% end %>
+								</li>
+
+								<div class="download_csv_btn pull-right">
+									<%= link_to 'Download', available_path(params[:id], 'processor_name' => @crawl.processor_name, format: 'csv'), class: 'btn btn-success' %>
+								</div>
+
+							</ul>
+
+
+
+						</div>
+
+					</div>
+
+					<!-- TABS -->
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid container_section">
+
+		<div class="row">
+
+			<div class="col-xs-12">
+
+				<div class="row">
+
+					<div class="panel panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+
+							<div class="header_glyph">
+								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							</div>
+							<div class="header_text">
+								<p>Found Avalible Domains</p>
+							</div>
+
+						</div>
+						<%= form_tag save_bookmarked_sites_path(params[:id]), id: 'available-sites-form', method: :put do %>
+						<div class="panel-body">
+							<table class="table table-hover table-striped">
+
+								<thead>
+									<tr>
+										<th class="col-xs-1"></th>
+										<th>DOMAIN</th>
+										<th class="col-xs-1">
+											<%= link_to 'DA', available_path(id: params[:id], sort: '2', 'processor_name' => @crawl.processor_name) %>
+										</th>
+										<th class="col-xs-1">
+											<%= link_to 'PA', available_path(id: params[:id], sort: '3', 'processor_name' => @crawl.processor_name) %>
+										</th>
+										<th class="col-xs-1">
+											<%= link_to 'TF', available_path(id: params[:id], sort: '4', 'processor_name' => @crawl.processor_name) %>
+										</th>
+										<th class="col-xs-1">
+											<%= link_to 'CF', available_path(id: params[:id], sort: '5', 'processor_name' => @crawl.processor_name) %>
+										</th>
+										<th class="col-xs-1">TF/CF</th>
+										<th class="col-xs-1">
+											<%= link_to 'RF', available_path(id: params[:id], sort: '6', 'processor_name' => @crawl.processor_name) %>
+										</th>
+										<th class="col-xs-1">
+											<%= link_to 'BL', available_path(id: params[:id], sort: '7', 'processor_name' => @crawl.processor_name) %>
+										</th>
+										<th></th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<% @pages.each do |i| %>
+										<tr>
+											<td><%= check_box_tag "page_ids[]", i[0] %></td>
+											<td><%= link_to "#{i[1]}", "http://#{i[1]}" %></td>
+											<td> <%= i[2].to_s == '' ? "gathering" : number_with_precision(i[2], precision: 0) %></td>
+											<td><%= i[3].to_s == '' ? "gathering" : number_with_precision(i[3], precision: 0) %></td>
+											<td><%= i[4].to_s == '' ? "gathering" : i[4] %></td>
+											<td><%= i[5].to_s == '' ? "gathering" : i[5] %></td>
+											<td><%= i[4].to_s == '' ? "gathering" : number_with_precision(i[4].to_f/i[5].to_f) %></td>
+											<td><%= i[6].to_s == '' ? "gathering" : i[6] %></td>
+											<td><%= i[7].to_s == '' ? "gathering" : i[7] %></td>
+											<!-- <td><%#= link_to 'Bookmark', '#', class: 'btn btn-primary btn-xs' %></td> -->
+
+												<td colspan="2">
+													<%= link_to 'Add to Marketplace', new_domains_for_sale_path(domain_id: i[0], processor_name: params["processor_name"], crawl_id: @crawl.id), class: 'btn btn-primary btn-xs' %>
+													<%= link_to 'More Info', anchor_texts_path(crawl_id: i[0], url: i[1]), class: 'btn btn-warning btn-xs domain-more-info-btn accordion-toggle', remote: true,  data: {'toggle' => 'collapse', 'parent' => '#marketplace-domains-table', 'target' => ".packageDetails#{i[0]}"} %>
+												</td>
+										</tr>
+										<tr>
+											<td class="hiddenRow" colspan='11'>
+												<%= content_tag :div, class: "accordion-body collapse packageDetails#{i[0]}", id: "accordion#{i[0]}" do  %>
+												<% end %>
+											</td>
+										</tr>
+									<% end %>
+								</tbody>
+
+							</table>
+
+							<div class="will_paginate_container text-center">
+								<%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="bookmark_sites_container pull-right">
+						<%= submit_tag 'Bookmark Sites', id: 'available-submit-tag', class: 'btn btn-primary' %>
+					</div>
+
+					<% end %>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

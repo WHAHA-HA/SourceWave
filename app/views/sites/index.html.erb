@@ -1,0 +1,169 @@
+<div class="main_page_container">
+
+	<div class="container-fluid container_section">
+
+		<div class="row">
+
+			<div class="col-xs-12">
+
+				<div class="row">
+
+					<div class="panel panel-default panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+
+							<div class="header_glyph">
+								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							</div>
+							<div class="header_text">
+								<p>Found Available Domains</p>
+							</div>
+
+						</div>
+						<div class="panel-body">
+
+              <%= form_tag sites_path, method: :get, id: 'filter-sites' do %>
+                <%= hidden_field_tag :user_id, current_user.id %>
+
+				<%= hidden_field_tag :domain_id, value: params[:domain_id] %>
+				<%= hidden_field_tag :processor_name, value: params[:processor_name] %>
+				<%= hidden_field_tag :crawl_id, value: params[:crawl_id] %>
+
+                <div class='col-md-6'>
+                  <p>DA range</p>
+                  <%= text_field_tag :da_range, nil, id: 'da-range' %>
+                </div>
+                <div class='col-md-6'>
+                  <p>TF range</p>
+                  <%= text_field_tag :tf_range, nil, id: 'tf-range' %>
+                </div>
+                <div class='row text-center'>
+                  <br/>
+                  <%= submit_tag 'Filter by ranges', class: 'btn btn-green' %>
+                  <br/><br/>
+                </div>
+              <% end %>
+
+              <%= form_tag delete_sites_path, method: :get do %>
+                <table class="table table-hover table-striped">
+
+                  <thead>
+                    <tr>
+                      <th style='width:30px;'><input type='checkbox' id='select-all-checkboxes'></th>
+                      <th>DOMAIN</th>
+                      <th class="col-xs-1">
+                        <%= link_to 'DA', sites_path('user_id' => current_user.id, sort: '2', da_range: @da_range_str, tf_range: @tf_range_str) %>
+                      </th>
+                      <th class="col-xs-1">
+                        <%= link_to 'PA', sites_path('user_id' => current_user.id, sort: '3', da_range: @da_range_str, tf_range: @tf_range_str) %>
+                      </th>
+                      <th class="col-xs-1">
+                        <%= link_to 'TF', sites_path('user_id' => current_user.id, sort: '4', da_range: @da_range_str, tf_range: @tf_range_str) %>
+                      </th>
+                      <th class="col-xs-1">
+                        <%= link_to 'CF', sites_path('user_id' => current_user.id, sort: '5', da_range: @da_range_str, tf_range: @tf_range_str) %>
+                      </th>
+                      <th class="col-xs-1">TF/CF</th>
+                      <th class="col-xs-1">
+                        <%= link_to 'RF', sites_path('user_id' => current_user.id, sort: '6', da_range: @da_range_str, tf_range: @tf_range_str) %>
+                      </th>
+                      <th class="col-xs-1">
+                        <%= link_to 'BL', sites_path('user_id' => current_user.id, sort: '7', da_range: @da_range_str, tf_range: @tf_range_str) %>
+                      </th>
+                      <!-- <th class="col-xs-2">
+                        <%#= link_to 'Found time', sites_path('user_id' => current_user.id, sort: '8', da_range: @da_range_str, tf_range: @tf_range_str) %>
+                      </th> -->
+                      <!-- <th>FOUND ON</th> -->
+					  <th></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @domains.each do |i| %>
+                      <tr>
+                        <td><%= check_box_tag "page_infos[]", "#{i[0]},#{i[9]}", false, class: 'delete-check-box' %></td>
+                        <td>
+                          <%= link_to copy_to_clipboard_path(msg: "http://#{i[1]}"), class: 'copy_to_clipboard_button has-tooltip', data: {'toggle' => 'tooltip', 'placement' => 'top'}, title: "Copy To Clipboard", remote: true do %>
+                              <i class="glyphicon glyphicon-list-alt">
+                              <span class="glyph_text"><%= "www.#{i[1]}" %></span>
+                            </i>
+                          <% end %>
+                        </td>
+                        <td><%= number_with_precision(i[2], precision: 0) %></td>
+                        <td><%= number_with_precision(i[3], precision: 0) %></td>
+                        <td><%= i[4] %></td>
+                        <td><%= i[5] %></td>
+                        <td><%= number_with_precision(i[4].to_f/i[5].to_f) %></td>
+                        <td><%= i[6] %></td>
+                        <td><%= i[7] %></td>
+												<td colspan="2">
+													<%= link_to 'Add to Marketplace', new_domains_for_sale_path(domain_id: i[0], url: i[1]), class: 'btn btn-primary btn-xs' %>
+                      </tr>
+
+                    <% end %>
+                  </tbody>
+
+                </table>
+
+                <%= submit_tag 'Delete domains', class: 'btn btn-danger', id: 'delete-domains', style: 'display:none;' %>
+
+              <% end %>
+
+							<div class="will_paginate_container text-center">
+								<%= will_paginate @domains, renderer: BootstrapPagination::Rails %>
+							</div>
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+<script type='text/javascript'>
+    function deleteObserve(){
+        $('input.delete-check-box').each(function(){
+            $(this).change(function(){
+                $('input#delete-domains').show();
+            })
+        })
+        $('input#select-all-checkboxes').change(function(){
+            var checked = this.checked;
+            $('input#delete-domains').show();
+            $('input.delete-check-box').each(function(){
+                $(this).prop('checked', checked);
+            })
+        })
+    }
+
+    var daMin = '<%= @da_range_obj.min %>';
+    var daMax = '<%= @da_range_obj.max %>';
+    var tfMin = '<%= @tf_range_obj.min %>';
+    var tfMax = '<%= @tf_range_obj.max %>';
+
+    $(document).ready(function(){
+        deleteObserve();
+        $('form#filter-sites input#da-range').ionRangeSlider({
+          type: 'double',
+          grid: true,
+          min: 0,
+          max: 100,
+          from: daMin,
+          to: daMax
+        });
+        $('form#filter-sites input#tf-range').ionRangeSlider({
+          type: 'double',
+          grid: true,
+          min: 0,
+          max: 100,
+          from: tfMin,
+          to: tfMax
+        });
+    })
+</script>

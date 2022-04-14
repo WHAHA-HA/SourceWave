@@ -1,0 +1,132 @@
+<nav id='my-menu'>
+	<%= form_for DomainForSale.new, url: {controller: 'marketplace', action: 'index'}, method: 'get' do |f| %>
+		
+		
+		<div class='row'>
+	
+			<div class='col-xs-12'>
+		
+				<div class="field_container">
+	
+					<div class="field_label">
+						<%= label_tag :price, "Price Greater Than" %>
+					</div>
+	
+					<div class="field">
+						<%= f.text_field :price, class: "form-control" %>
+					</div>
+	
+				</div>
+		
+				<div class="field_container">
+	
+					<div class="field_label">
+						<div class='guarantee_domain_checkbox'>
+							<%= f.check_box :guaranteed %>
+						</div>
+						<div>
+							<%= label_tag :guaranteed, "Domains With Refund Guarantee" %>
+						</div>
+					</div>
+	
+					<div class="field">
+						
+					</div>
+	
+				</div>
+
+				<div class="field_container">
+	
+					<div class="field_label">
+						<%= label_tag :trustflow, "Trustflow Greater Than" %>
+					</div>
+	
+					<div class="field">
+						<%= f.text_field :trustflow, class: "form-control" %>
+					</div>
+	
+				</div>
+		
+				<div class="field_container">
+	
+					<div class="field_label">
+						<%= label_tag :citationflow, "Citationflow Greater Than" %>
+					</div>
+	
+					<div class="field">
+						<%= f.text_field :citationflow, class: "form-control" %>
+					</div>
+	
+				</div>
+
+				<div class="field_container">
+	
+					<div class="field_label">
+						<%= label_tag :da, "DA Greater Than" %>
+					</div>
+	
+					<div class="field">
+						<%= f.text_field :da, class: "form-control" %>
+					</div>
+	
+				</div>
+		
+				<div class="field_container">
+	
+					<div class="field_label">
+						<%= label_tag :pa, "PA Greater Than" %>
+					</div>
+	
+					<div class="field">
+						<%= f.text_field :pa, class: "form-control" %>
+					</div>
+	
+				</div>
+		
+				<div class="field_container">
+	
+					<div class="field_label">
+						<%= label_tag :refdomains, "Refdomains Greater Than" %>
+					</div>
+	
+					<div class="field">
+						<%= f.text_field :refdomains, class: "form-control" %>
+					</div>
+	
+				</div>
+		
+				<div class="field_container">
+	
+					<div class="field_label">
+						<%= label_tag :backlinks, "Backlinks Greater Than" %>
+					</div>
+	
+					<div class="field">
+						<%= f.text_field :backlinks, class: "form-control" %>
+					</div>
+	
+				</div>
+		
+				<div class="field_container">
+	
+					<div class="field_label">
+						<%= label_tag :user_rating, "User Rating Greater Than" %>
+					</div>
+	
+					<div class="field">
+						<%= f.text_field :user_rating, class: "form-control" %>
+					</div>
+	
+				</div>
+		
+				<div class="btn-block filter_domains_submit">
+					<%= f.submit 'Filter', class: 'btn btn-lg btn-block btn-success' %>	
+				</div>
+		
+			</div>
+	
+		</div>
+
+
+	<% end %>
+</nav>

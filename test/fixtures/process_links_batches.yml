@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_id: 1
+  status: MyString
+  started_at: 2015-01-23 13:36:51
+  finished_at: 2015-01-23 13:36:51
+  batch_id: MyString
+  pages_per_second: MyString
+  est_crawl_time: MyString
+
+two:
+  site_id: 1
+  status: MyString
+  started_at: 2015-01-23 13:36:51
+  finished_at: 2015-01-23 13:36:51
+  batch_id: MyString
+  pages_per_second: MyString
+  est_crawl_time: MyString

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  crawl_id: 1
+  processor_name: MyString
+  db_url: MyString
+  user_id: 1
+
+two:
+  crawl_id: 1
+  processor_name: MyString
+  db_url: MyString
+  user_id: 1

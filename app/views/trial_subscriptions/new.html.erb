@@ -1,0 +1,449 @@
+<div class="home_main_container">
+	
+	
+	<%= render 'nav/sales_top_nav' %>
+
+	<%= render 'layouts/flash_errors' %>
+
+  <div class="home_section_container checkout_main_container">
+    <div class="home_middle_container">
+      <div class='row'>
+
+        <div class="col-xs-8">
+
+          <%= form_tag trial_subscriptions_path, id: 'new_trial_subscription', :method => :post do %>
+            <%= hidden_field_tag :plan_id, params['plan_id'] %>
+			<%= hidden_field_tag :trial_end, params['trial_end'] %>
+			<%= hidden_field_tag :coupon, params['coupon'] %>
+            
+            <div class="form_section">
+              <div class='section_title_container'>
+                <div class="step_circle">1</div>
+                <div class="step_title_text">Create Your New Account </div>
+				<div><h5 class='red_warning_text'>(*use a different email if you had a previous account)</h5></div>
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :email, "Email" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[email]', nil, placeholder: ' Please use a different email if you had a previous account' %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :password, "Password" %>
+                    </div>
+                    <div class="form_field">
+                      <%= password_field_tag 'user[password]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+			  
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :password_confirmation, "Password Confirmation" %>
+                    </div>
+                    <div class="form_field">
+                      <%= password_field_tag 'user[password_confirmation]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+			
+			<div class="form_section">
+              <div class='section_title_container'>
+                <div class="step_circle">2</div>
+                <div class="step_title_text">Contact Information</div>
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-6'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :first_name, "First Name" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[first_name]', nil%>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='col-xs-6'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :user_last_name, "Last Name" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[last_name]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form_section">
+              <div class='section_title_container'>
+                <div class="step_circle">3</div>
+                <div class="step_title_text">Billing Details</div>
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :user_address_1, "Address 1" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[address_1]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :user_address_2, "Address 2" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[address_2]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-4'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :user_city, "City" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[city]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='col-xs-4'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :user_state, "State" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[state]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='col-xs-4'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :user_zip, "Zip Code" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[zip]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :country, "Country" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[country]', nil%>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form_section">
+
+              <div class='section_title_container'>
+                <div class="step_circle">4</div>
+                <div class="step_title_text">Payment Information</div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div id="stripe_error">
+                    <noscript>
+                      JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+                    </noscript>
+                  </div>
+                </div>
+              </div>
+              <section class="card">
+                <div class='row'>
+
+                  <div class='col-xs-12'>
+                    <div class="payment-errors"></div>
+
+                    <div class="form_field_section">
+                      <div class="form_label">
+                        <%= label_tag 'card[number]', 'Credit Card Number' %>
+                      </div>
+                      <div class="form_field">
+                        <%= text_field_tag 'card[number]', nil, data: {stripe: 'number'}, maxlength: 16, minlength: 16%>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class='row'>
+
+                  <div class='col-xs-4'>
+                    <div class="form_field_section">
+                      <div class="form_label">
+                        <%= label_tag 'card[cvc]', 'CVC / CVV' %>
+                      </div>
+                      <div class="form_field">
+                        <%= text_field_tag 'card[cvc]', nil, data: {stripe: 'cvc'}, maxlength: 3, minlength: 3 %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class='col-xs-4'>
+                    <div class="form_field_section">
+                      <div class="form_label">
+                        <%= label_tag 'card[exp]', "Exp. Month" %>
+                      </div>
+                      <div class="form_field">
+                        <%= text_field_tag 'card[month]', nil, data: {stripe: 'exp-month'}, maxlength: 2, minlength: 2 %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class='col-xs-4'>
+                    <div class="form_field_section">
+                      <div class="form_label">
+                        <%= label_tag :card_year, "Exp. Year" %>
+                      </div>
+                      <div class="form_field">
+                        <%= text_field_tag 'card[year]', nil, data: {stripe: 'exp-year'}, maxlength: 4, minlength: 2 %>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+
+
+              <div class="line_break"></div>
+			  
+              <div class="row trust_logos">
+				
+                <div class="col-xs-6">
+                  <div class="row">
+                    <div class="col-xs-1">
+                      <div class="trust_logo_headline_img">
+                        <%#= image_tag "http://www.leadpages.net/wp-content/themes/leadpages2014/images/new/homepage/30-badge.png" %>
+						<!-- <span class="glyphicon glyphicon-ok pull-left" aria-hidden="true"></span> -->
+						<%= check_box_tag 'accept_terms', 'yes', false, class: 'pull-left' %>
+                      </div>
+                    </div>
+                    <div class="col-xs-10">
+                      <div class="trust_logo_headline pull-left">
+                        <p>
+							<%#= check_box_tag 'accept_terms' %>
+							<%= link_to 'I AGREE TO THE TERMS', terms_path, target: 'blank' %>
+						</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-6">
+                  <div class="row">
+                    <div class="col-xs-5">
+                      <div class="trust_logo_headline_img pull-right">
+                        <%= image_tag "http://www.leadpages.net/wp-content/themes/leadpages2014/images/new/homepage/secure-lock.png" %>
+                      </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <div class="trust_logo_headline pull-left">
+                        <p>SECURE CHECKOUT</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="panel panel-default order_total_container">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="pull-left order_toatal_text">Your Order Total:</div>
+					
+						<% if params['trial_end'].to_i != 0 %>
+							<div class="pull-right order_toatal_price">
+								<%= params['trial_end'].to_i %> day FREE trial, then 
+								
+								<% if params['coupon'].to_s == '' %>	
+									$<%= @price %>
+								<% else %>
+									<span class='price_strikethrough'>$<%= @price %></span>
+									<span class='discount_price'>$<%= (@price.to_i/2).to_f %></span>
+								<% end %>
+								
+							</div>
+						<% else %>
+							<div class="pull-right order_toatal_price">
+								<% if params['coupon'].to_s == '' %>
+									$<%= @price %>
+								<% else %>
+									<span class='price_strikethrough'>$<%= @price %></span>
+									<span class='discount_price'>$<%= (@price.to_i/2).to_f %></span>
+								<% end %>
+							</div>
+						<% end %>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout_form_submit_btn">
+                <%= submit_tag "Start My Free Trial", id:'subscription-submit', class:'btn btn-success btn-lg btn-block checkout_form_submit_btn', data:{disable_with:'Working Magic..' }%>
+              </div>
+
+
+
+            </div>
+
+
+          <% end %>
+
+        </div>
+
+        <div class="col-xs-4">
+
+          <div class='right_checkout_section'>
+            <div class="page-header">
+              <h1>What's Included</h1>
+            </div>
+
+            <ul class="nav nav-list whats_included_list">
+              <li class="pull-left">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                There is no limit to the amount of domains you can find with Source Revive
+              </li>
+
+              <li class="pull-left">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                You are allowed an overkill of up to 10  active domain scan projects at a time
+              </li>
+
+              <li class="pull-left">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                We handle all the expensive data processing and proxies from our cloud servers.
+              </li>
+
+              <li class="pull-left">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                We continue to upgrade and improve this system and keep it pristine.
+              </li>
+            </ul>
+
+            <hr class="colorgraph">
+          </div>
+
+          <div class='right_checkout_section'>
+            <div class="page-header">
+              <h1>FAQ</h1>
+            </div>
+
+
+            <ul class="nav nav-list whats_included_list">
+              <li class="pull-left">
+				<p><strong>Why do you need my credit card info?</strong></p>
+				<p>We ask for your credit card so you don’t experience any interruption to your account if you decide to continue your subscription.</p>
+              </li>
+
+              <li class="pull-left">
+				<p><strong>Am I agreeing to a contract?</strong></p>
+				<p>Nope! You are under no obligation when you sign up for a monthly subscription. You can cancel at any time in the Billing and Subscription page of your account.</p>
+              </li>
+
+              <li class="pull-left">
+				<p><strong>What payment options do you accept?</strong></p>
+				<p>We currently accept Visa, MasterCard, Discover, and American Express. We unfortunately do not accept PayPal at this time.</p>
+              </li>
+
+            </ul>
+
+            <hr class="colorgraph">
+
+          </div>
+
+          <div class='right_checkout_section'>
+            <h1>Privacy / Security</h1>
+            <h4><small>We will not share or trade online information that you provide us (including e-mail addresses). All personal information you submit is encrypted and secure.</small></h4>
+
+            <div class="row text-center">
+
+              <div class="col-xs-6">
+                <div class="satisfaction_checkout_section privacy_securty_section pull-left">
+                  <%= image_tag 'https://www.safesitecertified.org/members/identity.html?seal=3&member=fa1a21df&location=Traffic_&_Conversion_Summit&size=3&seal_text=115&url=www.trafficandconversionsummit.com/order/recordings/' %>
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="satisfaction_checkout_section privacy_securty_section">
+                  <%= image_tag 'https://www.safesitecertified.org/members/identity.html?seal=2&member=fa1a21df&location=Traffic_&_Conversion_Summit&size=3&seal_text=115&url=www.trafficandconversionsummit.com/order/recordings/' %>
+                </div>
+              </div>
+
+            </div>
+
+            <hr class="colorgraph">
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+  Stripe.setPublishableKey("<%= ENV['stripe_public_key']%>");
+</script>

@@ -1,0 +1,63 @@
+<div class="container-fluid container_section">
+	
+		<div class="row">
+		
+			<div class="col-xs-12">
+			
+				<div class="row">
+					
+					<div class="panel panel-default">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							
+							<div class="header_glyph">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							</div>
+							<div class="header_text">
+								<p>TOP PRIMED DOMAINS</p>
+							</div>
+							
+						</div>
+						<div class="panel-body">
+							
+							<table class="table table-hover table-striped">
+								
+								<thead>
+									<tr>
+										<!-- <th></th> -->
+										<th>DOMAIN</th>
+										<th class='col-xs-2'>DA</th>
+										<th class='col-xs-2'>PA</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+									<% @top_domains.each do |i| %>
+										
+											<tr>
+												<!-- <td>
+													<span class="glyphicon glyphicon-trash glyph_pink" aria-hidden="true"></span>
+													<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+												</td> -->
+												<td><%= i.simple_url %></td>
+												<td><%= number_with_precision(i.da, precision: 0) %></td>
+												<td><%= number_with_precision(i.pa, precision: 0) %></td>
+											</tr>
+										
+									<% end %>
+									
+								</tbody>
+								
+							</table>
+							
+						</div>
+					</div>
+
+
+				</div>
+			
+			</div>
+		
+		</div>
+	
+</div>

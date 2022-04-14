@@ -1,0 +1,2 @@
+module PaypalAccountsHelper
+end

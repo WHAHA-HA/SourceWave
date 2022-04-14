@@ -1,0 +1,40 @@
+<ul class="project_stats_container text-center">
+	
+	<li class="col-xs-3 fill nopadding">
+		<div class="stat_title">
+			SITES
+		</div>
+		<div class="stat_value">
+			<%= link_to s.total_sites.to_i, "#" %>
+		</div>
+	</li>
+	
+	<li class="col-xs-3 fill nopadding">
+		<div class="stat_title">
+			URLS
+		</div>
+		<div class="stat_value">
+			<%= link_to s.total_urls_found.to_i, '#' %>
+		</div>
+	</li>
+	
+	<li class="col-xs-3 fill nopadding">
+		<div class="stat_title">
+			BROKEN
+		</div>
+		<div class="stat_value">
+			<%= link_to s.total_broken.to_i, broken_path(s.id, 'processor_name' => s.processor_name) %>
+		</div>
+	</li>
+	
+	<li class="col-xs-3 fill nopadding">
+		<div class="stat_title">
+			AVAILABLE
+		</div>
+		<div class="stat_value">
+			<%= link_to s.total_expired.to_i, available_path(id: s.id, 'processor_name' => s.processor_name) %>
+		</div>
+	</li>
+	
+</ul>
+	

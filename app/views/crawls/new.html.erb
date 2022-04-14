@@ -1,0 +1,53 @@
+<div class="main_page_container">
+
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+					<div class='top_nav_title_container'>
+						<div class="header_glyph">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						</div>
+						<div class="header_text">
+							<p>Add New</p>
+						</div>
+					</div>
+          <div class="blue-nav">
+            <ul class='nav'>
+              <li class="active">
+                <%= link_to 'URL Crawl', new_crawl_path %>
+                <div class="arrow-down"></div>
+              </li>
+              <li>
+                <%= link_to 'Keyword Crawl', new_keyword_crawl_path %>
+              </li>
+              <li>
+                <%= link_to 'Reverse Crawl', new_reverse_crawl_path %>
+              </li>
+            </ul>
+          </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid container_section">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="panel panel-success panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							<div class='header_text'>
+								<p>URL Crawl</p>
+							</div>
+						</div>
+						<div class="panel-body">
+							<%= render 'form' %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Source Revive</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "https://js.stripe.com/v2/", 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+  
+  <script type="text/javascript" src="https://static.leaddyno.com/js"></script>
+  <script>
+  LeadDyno.key = "9b0ddaf9be6a5205ac0da12e47965960ffec33d6";
+  LeadDyno.recordVisit();
+  LeadDyno.autoWatch();
+  </script>
+  
+</head>
+<body id="<%=params[:controller]%>" class="<%=params[:action]%>">
+	
+<%= render 'nav/top_nav' %>
+
+<div class="main_container fill">
+
+  <% if current_user %>
+    <div class="main_left_container fill left_nav_bg">
+      <%= render 'nav/left_nav' %>
+    </div>
+  <% end %>
+
+	<div class="main_right_container fill main_page_bg">
+
+    	<%= render 'layouts/flash_errors' %>
+		<%= yield %>
+		<%= render 'footer/footer_links' %>
+		
+		
+	</div>
+
+</div>
+
+  
+</body>
+</html>

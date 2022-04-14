@@ -1,0 +1,6 @@
+= bootstrap_form_for @user, url: create_user_admins_path do |f|
+  = f.text_field :email
+  = f.password_field :password
+  = f.password_field :password_confirmation
+  = hidden_field_tag :plan_id, 5
+  = f.submit "Create User", class: 'btn btn-primary'

@@ -1,0 +1,166 @@
+ <div class="new_project_form_container">
+	
+	<%= form_for @project, :url => create_keyword_crawl_path, method: 'post' do |f| %>
+		<%= f.hidden_field :crawl_name, value: params['crawl_name'] %>
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :name, 'Crawl Name' %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :name, class: "form-control" %>
+			</div>
+			
+		</div>
+
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :keyword, "Niche Keyword" %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :keyword, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :maxpages, "Number Of Pages To Crawl" %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :maxpages, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		
+		<div class='col-xs-6' id="crawl_start_date_input">
+			<div class="field_container ">
+			
+				<div class="field_label">
+					<%= f.label :hours, "Crawl Total Hours" %>
+				</div>
+			
+				<div class="field">
+					<%= f.number_field :hours, max: 12, class: "form-control" %>
+				</div>
+			
+			</div>
+		</div>
+		
+		<div class='col-xs-6' id='crawl_end_date_input'>
+			<div class="field_container">
+			
+				<div class="field_label">
+					<%= f.label :minutes, "Crawl Total Minutes" %>
+				</div>
+			
+				<div class="field">
+					<%= f.number_field :minutes, max: 59, class: "form-control" %>
+				</div>
+			
+			</div>
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :moz_da, "Moz DA" %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :moz_da, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :majestic_tf, "Majestic TF" %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :majestic_tf, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<!-- <div class="field_container text-center">
+
+			<div class="field_label">
+				<%#= f.label :notify_me_after, "Notify Me After This Many Domains Are Found" %>
+			</div>
+
+			<div class="field">
+				<%#= f.text_field :notify_me_after, class: "form-control" %>
+			</div>
+
+		</div> -->
+		
+		<div class='col-xs-6' id="crawl_start_date_input">
+			<div class="field_container ">
+			
+				<div class="field_label">
+					<%= f.label :crawl_start_date, "Crawl Start Date" %>
+				</div>
+			
+				<div class="field">
+					<%= f.text_field :crawl_start_date, class: "form-control", placeholder: 'mm/dd/yy', data: {'provide'=>'datepicker'} %>
+				</div>
+			
+			</div>
+		</div>
+		
+		<div class='col-xs-6' id='crawl_end_date_input'>
+			<div class="field_container ">
+			
+				<div class="field_label">
+					<%= f.label :crawl_end_date, "Crawl End Date" %>
+				</div>
+			
+				<div class="field">
+					<%= f.text_field :crawl_end_date, class: "form-control", placeholder: 'mm/dd/yy', data: {'provide'=>'datepicker'} %>
+				</div>
+			
+			</div>
+		</div>
+		
+		<!-- <div class="field_container text-center">
+
+			<div class="field_label">
+				<%#= label_tag "Link Depth" %>
+			</div>
+
+			<div class="field">
+				<label>
+					<%#= radio_button_tag :link_depth, "1", checked: true %>
+					<span class="radio_label"></span>
+				</label>
+				<label>
+					<%#= radio_button_tag :link_depth, "2" %>
+				</label>
+				<label>
+					<%#= radio_button_tag :link_depth, "3" %>
+				</label>
+			</div>
+
+		</div> -->
+		<% if @project.id.nil? %>
+		<div class="field_container text-center pink_form_submit_btn_container">
+			
+			<div class="btn-block start_crawling_btn">
+				<%= f.submit "BEGIN REVIVING", class: 'btn btn-lg btn-block btn-success start_crawling_btn_link' %>
+			</div>
+			
+		</div>
+		<% end %>
+		
+	<% end %>
+	
+</div>

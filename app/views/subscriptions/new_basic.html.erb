@@ -1,0 +1,109 @@
+<div class="home_main_container">
+	
+	
+	<%= render 'nav/sales_top_nav' %>
+
+	<%= render 'layouts/flash_errors' %>
+
+  <div class="home_section_container checkout_main_container">
+    <div class="home_middle_container">
+      <div class='row'>
+
+        <div class="col-xs-8">
+
+          <%= form_tag create_basic_subscription_path, url: {controller: 'subscriptions', action: 'create_basic'}, :method => :post, id: 'new_basic_subscription' do %>
+            <%= hidden_field_tag :plan_id, params['plan_id'] %>
+            
+            <div class="form_section">
+              <div class='section_title_container'>
+                <div class="step_circle">1</div>
+                <div class="step_title_text">Create Your New Account</div>
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :email, "Email" %>
+                    </div>
+                    <div class="form_field">
+                      <%= text_field_tag 'user[email]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :password, "Password" %>
+                    </div>
+                    <div class="form_field">
+                      <%= password_field_tag 'user[password]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+			  
+              <div class='row'>
+
+                <div class='col-xs-12'>
+                  <div class="form_field_section">
+                    <div class="form_label">
+                      <%= label_tag :password_confirmation, "Password Confirmation" %>
+                    </div>
+                    <div class="form_field">
+                      <%= password_field_tag 'user[password_confirmation]', nil %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+			
+            <div class="checkout_form_submit_btn">
+              <%= submit_tag "Sign up to Revive", id:'basic-subscription-submit', class:'btn btn-success btn-lg btn-block checkout_form_submit_btn' %>
+            </div>
+
+          <% end %>
+
+        </div>
+
+        <div class="col-xs-4">
+
+          <div class='right_checkout_section'>
+            <h1>Privacy / Security</h1>
+            <h4><small>We will not share or trade online information that you provide us (including e-mail addresses). All personal information you submit is encrypted and secure.</small></h4>
+
+            <div class="row text-center">
+
+              <div class="col-xs-6">
+                <div class="satisfaction_checkout_section privacy_securty_section pull-left">
+                  <%= image_tag 'https://www.safesitecertified.org/members/identity.html?seal=3&member=fa1a21df&location=Traffic_&_Conversion_Summit&size=3&seal_text=115&url=www.trafficandconversionsummit.com/order/recordings/' %>
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="satisfaction_checkout_section privacy_securty_section">
+                  <%= image_tag 'https://www.safesitecertified.org/members/identity.html?seal=2&member=fa1a21df&location=Traffic_&_Conversion_Summit&size=3&seal_text=115&url=www.trafficandconversionsummit.com/order/recordings/' %>
+                </div>
+              </div>
+
+            </div>
+
+            <hr class="colorgraph">
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

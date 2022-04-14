@@ -1,0 +1,21 @@
+<div class="container-fluid header_title_container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="header_title_content">
+				
+				<div class="header_button pull-left filter_button">
+					<p><%= link_to "Filters", '#', id: 'menu-button', class: 'btn btn-default btn-sm', 'data-no-turbolink': true %></p>
+				</div>
+				
+				<div class="header_button pull-right cart_button">
+					<%= link_to domains_cart_index_path do %>
+					    <i class="glyphicon glyphicon-shopping-cart">
+							<span class="glyph_text">Cart</span>
+						</i>
+					<% end %>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

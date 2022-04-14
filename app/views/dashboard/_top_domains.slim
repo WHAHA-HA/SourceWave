@@ -1,0 +1,42 @@
+.container-fluid.container_section
+  .row
+    .col-xs-12
+      .row
+        .panel.panel-default
+          .panel-heading.panel_blue_heading.panel_glyph_container
+            .header_glyph
+              span.glyphicon.glyphicon-ok aria-hidden="true"
+            .header_text
+              p Found Avalible Domains
+          .panel-body
+            table.table.table-hover.table-striped
+              - if @domains.empty?
+                | Once you have run a crawl your Top Domains will be shown here
+              - else
+                thead
+                  tr
+                    th DOMAIN
+                    th DA
+                    th PA
+                    th TF
+                    th CF
+                    th TF/CF
+                    th RD
+                    th BL
+                    th FOUND ON
+                tbody
+                  - @domains.each do |d|
+                    tr
+                      / | <td
+                      / | <span class="glyphicon glyphicon-trash glyph_pink" aria-hidden="true"></span
+                      / | <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span
+                      / | </td
+                      td = d.simple_url
+                      td = number_with_precision(d.da, precision: 2)
+                      td = number_with_precision(d.pa, precision: 0)
+                      td = d.trustflow
+                      td = d.citationflow
+                      td = number_with_precision(d.trustflow.to_f/d.citationflow.to_f)
+                      td = d.refdomains
+                      td = d.backlinks
+                      td = d.found_on

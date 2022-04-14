@@ -1,0 +1,27 @@
+<div class="main_page_container">
+	
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+					<div class="header_glyph">
+						<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+					</div>
+					<div class="header_text">
+						<p>Active Projects</p>
+					</div>
+					<div class="header_button">
+						<p><%= link_to "CREATE NEW", new_project_path, class: 'btn btn-success btn-sm' %></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid container_section">
+	
+		<%= render 'project_row' %>
+	
+	</div>
+
+</div>

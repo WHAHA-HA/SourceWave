@@ -1,0 +1,12 @@
+= bootstrap_form_for user, url: update_user_admins_path, method: :put do |f|
+  = f.hidden_field :user_id, value: user.id
+  = f.text_field :email
+  = f.submit 'Update email'
+= bootstrap_form_for user, url: update_user_admins_path, method: :put do |f|
+  = f.hidden_field :user_id, value: user.id
+  = f.password_field :password
+  = f.submit 'Update password'
+= bootstrap_form_for user, url: update_user_admins_path, method: :put do |f|
+  = f.hidden_field :user_id, value: user.id
+  = f.text_field :minutes_used
+  = f.submit 'Update minutes used'

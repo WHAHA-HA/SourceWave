@@ -1,0 +1,83 @@
+<ul class="left_nav_container">
+	
+	<li class=<%= 'active' if current_page?(dashboard_path) %> >
+		<%= link_to dashboard_path do %>
+		    <i class="glyphicon glyphicon-home">
+				<span class="glyph_text">Dashboard</span>
+			</i>
+		<% end %>
+	</li>
+	
+	<%# if current_user.admin %>
+	
+		<li class=<%= 'active' if current_page?(marketplace_index_path) %> >
+			<%= link_to marketplace_index_path, "data-no-turbolink" => true do %>
+			    <i class="glyphicon glyphicon-shopping-cart">
+					<span class="glyph_text">Marketplace</span>
+				</i>
+			<% end %>
+		</li>
+		
+		<% if current_page?(marketplace_index_path) || current_page?(domains_for_sale_index_path) || current_page?(domains_sold_path) || current_page?(domains_purchased_path) %>
+			<li class='marketplace_sub_menu'>
+				<%= link_to 'Store', marketplace_index_path, class: 'glyphicon glyph_text', "data-no-turbolink" => true %>
+			</li>
+			
+			<li class='marketplace_sub_menu'>
+				<%= link_to 'Domains For Sale', domains_for_sale_index_path, class: 'glyphicon glyph_text' %>
+			</li>
+			
+			<li class='marketplace_sub_menu'>
+		    <i class="glyphicon glyphicon-plus">
+				<span class="glyph_text">New Crawl</span>
+			</i>
+          <%= link_to 'Domains Sold', domains_sold_path, class: 'glyphicon glyph_text' %>
+          </li>
+
+          <li class='marketplace_sub_menu'>
+            <%= link_to 'Domains Purchased', domains_purchased_path, class: 'glyphicon glyph_text' %>
+          </li>
+
+      <% end %>
+
+      <%# end %>
+
+      <li class=<%= 'active' if current_page?(new_project_path) %> >
+        <%= link_to new_project_path do %>
+		<% end %>
+	</li>
+
+	<li class=<%= 'active' if current_page?(crawls_path) %> >
+		<%= link_to crawls_path do %>
+		    <i class="glyphicon glyphicon-folder-open">
+				<span class="glyph_text">Projects</span>
+			</i>
+		<% end %>
+	</li>
+	
+	<li class=<%= 'active' if current_page?(sites_path) %> >
+		<%= link_to sites_path do %>
+		    <i class="glyphicon glyphicon-th-list">
+				<span class="glyph_text">Domains</span>
+			</i>
+		<% end %>
+	</li>
+	
+	<li class=<%= 'active' if current_page?(account_path) %> >
+		<%= link_to account_path do %>
+		    <i class="glyphicon glyphicon-user">
+				<span class="glyph_text">Account</span>
+			</i>
+		<% end %>
+	</li>
+	
+    <% if current_user.admin %>
+      <li <% if @nav == 'admin' %>class='active'<% end %>>
+        <%= link_to admins_path do %>
+            <i class="glyphicon glyphicon-cog">
+            <span class="glyph_text">Admin</span>
+          </i>
+        <% end %>
+      </li>
+    <% end %>
+</ul>

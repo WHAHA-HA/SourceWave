@@ -1,0 +1,72 @@
+<div class='revive_top_nav_header_container'>
+	<div class='revive_top_nav_logo text-center'>
+		<a class="navbar-brand" href="/">REV⚕VE</a>
+	</div>
+</div>
+
+<div class="signup_form_container">
+
+	<h1 class='text-center'>Sign Up</h1>
+
+	<%= form_for @user do |f| %>
+		
+		<%= hidden_field_tag "plan_id", params['plan_id'] %>
+		<%= hidden_field_tag "trial_end", params['trial_end'] %>
+		
+		<div class="field_container">
+
+			<div class="field_label">
+				<%= f.label :email %>
+			</div>
+
+			<div class="field">
+				<%= f.text_field :email, class: "form-control" %>
+			</div>
+
+		</div>
+
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :password %>
+			</div>
+			
+			<div class="field">
+				<%= f.password_field :password, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :password_confirmation %>
+			</div>
+			
+			<div class="field">
+				<%= f.password_field :password_confirmation, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container text-center pink_form_submit_btn_container">
+			
+			<div class="field_label">
+				<%= f.submit "Sign up to Source Revive", class: 'btn pink_form_submit_btn' %>
+			</div>
+			
+		</div>
+		
+		<span class="or-rule">
+			<div class="or-rule-before"></div>
+			or
+			<div class="or-rule-after"></div>
+		</span>
+		
+		<div class="btn-block free_uni_btn">
+			<%= link_to "Sign In", login_path, class: 'btn btn-lg btn-block btn-success free_uni_btn_link' %>
+		</div>
+		
+	<% end %>
+	
+</div>

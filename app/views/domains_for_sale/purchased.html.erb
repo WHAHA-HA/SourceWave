@@ -1,0 +1,68 @@
+<div class="main_page_container">
+
+	<%#= render 'nav/domains' %>
+	
+	<div class="container-fluid">
+		<%= content_tag :div, notice, class: 'bg-success' %>
+		<%= content_tag :div, alert, class: 'bg-danger' %>
+	</div>
+
+	<div class="container-fluid container_section">
+		
+
+					<div class="panel panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							
+							<div class="header_glyph">
+								<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+							</div>
+							<div class="header_text">
+								<p>Domains Purchased</p>
+							</div>
+							
+						</div>
+						<div class="panel-body">
+							
+							<table class="table table-hover table-striped">
+								
+								<thead>
+									<tr>
+										<th class='col-xs-3'>URL</th>
+										<th>PRICE</th>
+										<th>TF</th>
+										<th>CF</th>
+										<th>DA</th>
+										<th>PA</th>
+										<th>RF</th>
+										<th>BL</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+									<% @domains.each do |domain| %>
+										
+										<tr>
+											<td><%= domain.url.to_s %></td>
+											<td><%= domain.price.to_f %></td>
+											<td><%= domain.trustflow %></td>
+											<td><%= domain.citationflow %></td>
+											<td><%= number_with_precision(domain.da, precision: 0) %></td>
+											<td><%= number_with_precision(domain.pa, precision: 0) %></td>
+											<td><%= domain.refdomains %></td>
+											<td><%= domain.backlinks %></td>
+										</tr>
+										
+									<% end %>
+									
+								</tbody>
+
+							</table>
+							
+						</div>
+						
+					</div>
+	
+	</div>
+
+</div>

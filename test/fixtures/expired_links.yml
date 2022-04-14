@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  available: MyString
+  site_i: MyText
+  site_id: 1
+  internal: false
+  found_on: MyText
+  simple_url: MyText
+  available: MyString
+  citationflow: MyString
+  trustflow: MyString
+  trustmetric: MyString
+  refdomains: MyString
+  backlinks: MyString
+  pa: MyString
+  da: MyString
+
+two:
+  url: MyString
+  available: MyString
+  site_i: MyText
+  site_id: 1
+  internal: false
+  found_on: MyText
+  simple_url: MyText
+  available: MyString
+  citationflow: MyString
+  trustflow: MyString
+  trustmetric: MyString
+  refdomains: MyString
+  backlinks: MyString
+  pa: MyString
+  da: MyString

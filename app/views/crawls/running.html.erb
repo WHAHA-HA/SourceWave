@@ -1,0 +1,83 @@
+<div class="main_page_container">
+	
+
+	
+	
+	
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+					<!-- TABS -->
+				
+					<div class="tabbable-panel">
+						<div class="tabbable-line">
+							<ul class="nav nav-tabs ">
+								<li>
+									<%= link_to crawls_path do %>
+									    <i class="glyphicon glyphicon-folder-open">
+											<span class="glyph_text">Projects</span>
+										</i>
+									<% end %>
+								</li>
+
+							
+								<li class='active'>
+									<%= link_to running_crawls_path do %>
+									    <i class="glyphicon glyphicon-refresh">
+											<span class="glyph_text">Running</span>
+										</i>
+									<% end %>
+								</li>
+
+								
+								<div class="header_button pull-right">
+									<p><%= link_to "CREATE NEW", new_project_path, class: 'btn btn-success btn-sm', 'data-no-turbolink': true %></p>
+								</div>
+								
+								<div class="header_button pull-right">
+									
+									<%= link_to running_crawls_path('view' => 'grid_view'), class: 'btn', 'data-no-turbolink': true do %>
+									    <i class="glyphicon glyphicon glyphicon-th"></i>
+									<% end %>
+									
+								</div>
+								
+								<div class="header_button pull-right">
+									
+									<%= link_to running_crawls_path('view' => 'list_view'), class: 'btn', 'data-no-turbolink': true do %>
+									    <i class="glyphicon glyphicon-th-list"></i>
+									<% end %>
+									
+								</div>
+								
+							</ul>
+						</div>
+					</div>
+				
+					<!-- TABS -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<div class="container-fluid container_section">
+
+		<%#= render 'minutes/used_minutes' %>
+		
+		<% if params['view'] == 'grid_view' %>
+			<%= render 'project_row' %>
+		<% else %>
+			<%= render 'projects_list_view' %>
+		<% end %>
+
+		<div class="will_paginate_container text-center">
+			<%= will_paginate @crawls, renderer: BootstrapPagination::Rails %>
+		</div>
+	
+	</div>
+
+</div>

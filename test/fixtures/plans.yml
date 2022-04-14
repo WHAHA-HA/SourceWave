@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  pages_per_crawl: 1
+  expired_domains: 1
+  broken_domains: 1
+  crawls_at_the_same_time: 1
+  reserve_period: 1
+  crawl_speed: 1
+  marketplace: false
+
+two:
+  name: MyString
+  pages_per_crawl: 1
+  expired_domains: 1
+  broken_domains: 1
+  crawls_at_the_same_time: 1
+  reserve_period: 1
+  crawl_speed: 1
+  marketplace: false

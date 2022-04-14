@@ -1,0 +1,17 @@
+= modal({id: 'tips-modal'}, 'Need some tips?') do
+  -if @maintenance.enabled?
+    .row
+    h2 = @maintenance.message
+  .row
+    h4 Having trouble finding domains or need some tips? Watch our new training video that will show you the right way to use Revive and find thousands of domains
+  br
+  br
+  .row
+    .col-sm-12.text-center
+      .tutorial
+	      = link_to image_tag('play_btn.png'), "https://www.youtube.com/watch?v=hfD-nfnMEIA", class: "dashboard_tutorial_link"
+	      = link_to 'Revive Essential Training', 'https://www.youtube.com/watch?v=hfD-nfnMEIA', class: 'dashboard_tutorial_link'
+javascript:
+  $(document).ready(function(){
+    $('#tips-modal').modal();
+  });

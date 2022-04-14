@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Source Revive</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <%= stylesheet_link_tag "styles", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+  <script type="text/javascript" src="https://static.leaddyno.com/js"></script>
+  <script>
+  LeadDyno.key = "9b0ddaf9be6a5205ac0da12e47965960ffec33d6";
+  LeadDyno.recordVisit();
+  LeadDyno.autoWatch();
+  </script>
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic|Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <!--[if lt IE 8]>
+  			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  		<![endif]-->
+  <%= render 'layouts/flash_errors' %>
+  <%= yield %>
+  <%= render 'sales/footer'  %>
+	<script type="text/javascript">
+	// functions for Source CCS
+	var utils = {
+
+		// initialize
+		init: function() {
+			// bind events
+			this.bindEvents();
+
+			// animate header text
+			if($('.anim-text').length > 0) { this.animateHomepageHeader(); }
+		},
+
+		bindEvents: function() {
+			var that = this;
+			// scrolling events
+			window.onscroll = function() {
+				that.fixHeader();
+			};
+		},
+
+		// fixed overlay header over content
+		fixHeader: function() {
+			var fixOffset = this.isSmallMobile() ? 0 : 18;
+			var header = document.getElementsByTagName('header')[0];
+			if (!classie.has( header, 'overlay' ) && window.pageYOffset > fixOffset ) {
+				classie.add( header, 'overlay' );
+			} else if (window.pageYOffset <= fixOffset && classie.has( header, 'overlay' ) ) {
+				classie.remove( header, 'overlay' );
+			}
+		},
+
+		isMobile: function() {
+			return ((window.matchMedia && window.matchMedia('only screen and (max-width: 767px)').matches));
+		},
+
+		isSmallMobile: function() {
+			return ((window.matchMedia && window.matchMedia('only screen and (max-width: 559px)').matches));
+		},
+
+		// homepage header animation
+		animateHomepageHeader: function() {
+			$(".anim-text-temp").remove();
+			$('.anim-text').textillate({
+							initialDelay: 0,
+							type: "char",
+							delay: 250,
+							minDisplayTime: 3000,
+							out: {
+									effect: "fadeOut",
+									delayScale: .9
+							},
+							"in": {
+									effect: "fadeIn",
+									reverse: true,
+									delayScale: .9
+							},
+							loop: true
+					});
+		}
+
+	};
+
+	// run init
+	utils.init();
+
+	</script>
+</body>
+</html>

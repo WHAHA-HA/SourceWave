@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default home_top_nav_container" role="navigation">
+	<div class="">
+		<div class="row">
+			
+			<div class="pull-left logo">
+				<!-- <div class='revive_top_nav_logo text-center'>
+					<a class="navbar-brand" href="/">REV⚕VE</a>
+				</div> -->
+				<a class="navbar-brand logo_blue_link" href="/">REV⚕VE</a>
+			</div>
+			
+			<div class="pull-right">
+				<!-- <div class="navbar-text"><a href="#" class="top_nav_link">ACCOUNT</a></div> -->
+				<% if current_user %>
+					<div class="navbar-text white_text">Logged in as <%= current_user.email %>.</div>
+					<div class="navbar-text"><%= link_to "Log Out", logout_path, class: 'top_nav_link' %></div>
+				<% else %>
+					<div class="logged_out_nav_text navbar-text">
+						<%= link_to 'Home', root_path, class: 'top_nav_link' %>
+					</div>
+					<div class="logged_out_nav_text navbar-text">
+						<%= link_to 'Register', plans_path, class: 'top_nav_link' %>
+					</div>
+					<div class="logged_out_nav_text navbar-text">
+						<%= link_to 'Member Login', login_path, class: 'top_nav_link' %>
+					</div>
+					<div class="logged_out_nav_text navbar-text">
+						<%= link_to 'Support', 'http://source-wave.com/support', class: 'top_nav_link' %>
+					</div>
+				<% end %>
+
+			</div>
+
+		</div>
+	</div>
+</nav>

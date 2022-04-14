@@ -1,0 +1,124 @@
+// --- DISPLAY, PAGE ELEMENTS ---
+
+// antialiased font
+@mixin antialiased {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// clear after child elements
+@mixin clear-after {
+	&::after {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 0;
+		clear: both;
+	}
+}
+
+// transition
+@mixin transition ($property: all, $time: .3s, $easing: ease-out) {
+	transition: $property $time $easing 0s;
+}
+
+// lists without bullets
+@mixin no-bullets () {
+	li {
+		list-style: none;
+	}
+}
+
+
+// --- MATHEMATICS ---
+
+// recount pixels to em
+@function em($pixels, $context: $default-font-size) {
+  @return #{$pixels/$context}em;
+}
+
+// --- RESPONSIVE ---
+// $bp-xxs: 480px;
+$bp-xs: 560px;
+$bp-sm: 768px;
+$bp-md: 960px;
+$bp-lg: 1360px;
+// @mixin xxs {
+// 	@media (max-width: $bp-xxs - 1 ) {
+// 		@content;
+// 	}
+// }
+
+// @mixin -xs {
+// 	@media (max-width: $bp-xs - 1 ) {
+// 		@content;
+// 	}
+// }
+
+// @mixin xs {
+// 	@media (min-width: $bp-xxs) and (max-width: $bp-xs - 1 ) {
+// 		@content;
+// 	}
+// }
+
+// @mixin xxs-sm {
+// 	@media (max-width: $bp-sm - 1 ) {
+// 		@content;
+// 	}
+// }
+
+// @mixin xs-sm {
+// 	@media (min-width: $bp-xxs) and (max-width: $bp-sm - 1 ) {
+// 		@content;
+// 	}
+// }
+
+// @mixin sm {
+// 	@media (min-width: $bp-xs) and (max-width: $bp-sm - 1 ) {
+// 		@content;
+// 	}
+// }
+
+// @mixin sm- {
+// 	@media (min-width: $bp-xs) {
+// 		@content;
+// 	}
+// }
+
+// extra small
+@mixin -xs {
+	@media (max-width: $bp-xs - 1 ) {
+		@content;
+	}
+}
+
+// small
+@mixin -sm {
+	@media (max-width: $bp-sm - 1 ) {
+		@content;
+	}
+}
+@mixin sm {
+	@media (min-width: $bp-sm) and (max-width: $bp-md - 1 ) {
+		@content;
+	}
+}
+
+// middle
+@mixin -md {
+	@media (max-width: $bp-md - 1 ) {
+		@content;
+	}
+}
+@mixin md {
+	@media (min-width: $bp-md) and (max-width: $bp-lg - 1 ) {
+		@content;
+	}
+}
+
+// large
+@mixin -lg {
+	@media (max-width: $bp-lg - 1 ) {
+		@content;
+	}
+}

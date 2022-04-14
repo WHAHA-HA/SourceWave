@@ -1,0 +1,31 @@
+<table>
+  <tr>
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Top 10 Back Links</h3>
+        </div>
+        <div class="panel-body">
+          <ol>
+            <% AnchorText.new('url' => url).get_back_links.first(10).each do |bl| %>
+              <li>
+                <%= link_to bl[0], "#{bl[0]}" %><br>
+                <%= bl[1] %>
+              </li>
+            <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class='col-xs-6'>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Anchor Text</h3>
+        </div>
+        <div class="panel-body" style="overflow: hidden;">
+          <%= pie_chart(get_anchor_text(crawl_id, url).graph_anchor_texts, id: "chart-#{crawl_id}", height: '200px') %>
+        </div>
+      </div>
+    </div>
+  </tr>
+</table>

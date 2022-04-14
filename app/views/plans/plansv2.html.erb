@@ -1,0 +1,131 @@
+<%= render 'nav/sales_top_nav' %>
+
+<section id="blue-header" class="blue">
+	<div class="wrap">
+		<h1>Simple, Flexible Pricing</h1>
+		<p>Plans for every level of SEO</p>
+	</div>
+</section>
+
+<section id="pricing" class="white">
+	<div class="wrap">
+		<h2>Source Thursday 12 Hour Pricing</h2>
+
+		<p class="subtitle">On average for every 45 minutes of crawl time members find 3-5 good domains</p>
+
+		<div class="flex">
+
+			<div class="item">
+				<h3>EMT</h3>
+				<ul>
+					<li>Unlimited Domains</li>
+					<li>1 Active Project</li>
+					<li>For Small PBNs</li>
+					<li>3000 Crawl Minutes</li>
+				</ul>
+				<%= link_to signup_path(plan_id: 21), class: 'btn' do %>
+					 <span class="cross-out">$199</span> $99 / month
+				<% end %>
+			</div>
+
+			<div class="item best">
+				<h3>Doctor</h3>
+				<ul>
+					<li>Domain Seller License</li>
+					<li>Unlimited Domains</li>
+					<li>1 Active Project</li>
+					<li>For Medium PBNs</li>
+					<li>Unlimited Crawl Minutes</li>
+				</ul>
+				<%= link_to signup_path(plan_id: 22), class: 'btn' do %>
+					<span class="cross-out">$297</span> $199 / month
+				<% end %>
+			</div>
+
+			<div class="item">
+				<h3>Immortal</h3>
+				<ul>
+					<li>Domain Seller License</li>
+					<li>Unlimited Domains</li>
+					<li>3 Active Projects</li>
+					<li>For Huge PBNs and Sellers</li>
+					<li class="orange">Unlimited Crawl Minutes</li>
+				</ul>
+				<%= link_to signup_path(plan_id: 23), class: 'btn' do %>
+					<span class="cross-out">$497</span> $297 / month
+				<% end %>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<section id="pricing" class="white">
+	<div class="wrap">
+		<div class="flex">
+
+			<div class="item">
+				<h3>6 Month Plan</h3>
+				<ul class="smaller">
+					<li>Paid Every 6 Months</li>
+					<li>Save Over $99</li>
+				</ul>
+				<%= link_to '$82 / month', signup_path(plan_id: 24), class: 'btn' %>
+			</div>
+
+			<div class="item">
+				<h3>6 Month Plan</h3>
+				<ul class="smaller">
+					<li>Paid Every 6 Months</li>
+					<li>Save Over $199</li>
+				</ul>
+				<%= link_to '$165 / month', signup_path(plan_id: 25), class: 'btn' %>
+			</div>
+
+			<div class="item">
+				<h3>6 Month Plan</h3>
+				<ul class="smaller">
+					<li>Paid Every 6 Months</li>
+					<li>Save Over $297</li>
+				</ul>
+				<%= link_to '$247 / month', signup_path(plan_id: 26), class: 'btn' %>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="pricing" class="white">
+	<div class="wrap">
+		<div class="flex">
+
+			<div class="item">
+				<h3>1 Year Plan</h3>
+				<ul class="smaller">
+					<li>Paid Annually</li>
+					<li>Save Over $396</li>
+				</ul>
+				<%= link_to '$66 / month', signup_path(plan_id: 27), class: 'btn' %>
+			</div>
+
+			<div class="item">
+				<h3>1 Year Plan</h3>
+				<ul class="smaller">
+					<li>Paid Annually</li>
+					<li>Save Over $796</li>
+				</ul>
+				<%= link_to '$132 / month', signup_path(plan_id: 28), class: 'btn' %>
+			</div>
+
+			<div class="item">
+				<h3>1 Year Plan</h3>
+				<ul class="smaller">
+					<li>Paid Annually</li>
+					<li>Save Over $1,188</li>
+				</ul>
+				<%= link_to '$198 / month', signup_path(plan_id: 29), class: 'btn' %>
+			</div>
+		</div>
+	</div>
+</section>
+
+</div>

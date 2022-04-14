@@ -1,0 +1,157 @@
+<div class="new_project_form_container">
+	
+	<%= form_for @project do |f| %>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :name, 'Crawl Name' %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :name, class: "form-control" %>
+			</div>
+			
+		</div>
+
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= label_tag :urls, "URL List" %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_area :base_urls, value: @project.base_urls.join(",").gsub(",", "\n"), class: "form-control", rows: "10" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+
+				<%= f.label :maxpages, "Number Of Pages To Crawl" %>
+				<span class="glyphicon glyphicon-info-sign has-tooltip" aria-hidden="true" data-toggle="tooltip" title="
+				
+				If you are skimming over 10 domains use 1-3 for best results. 
+				If you are scraping a small list of domains use 3-7 and 
+				if you are scraping a single large domain use 8-10.
+				
+				">
+				</span>
+				
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :maxpages, class: "form-control" %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :crawl_total_time, "Crawl Total Time" %>
+			</div>
+			
+		</div>
+		
+		<div class='col-xs-6' id="crawl_start_date_input">
+			<div class="field_container">
+			
+				<div class="field_label">
+					<%= f.label :hours, "Total Hours" %>
+				</div>
+			
+				<div class="field">
+					<%= f.number_field :hours, value: @hours, max: 12, class: "form-control" %>
+				</div>
+			
+			</div>
+		</div>
+		
+		<div class='col-xs-6' id='crawl_end_date_input'>
+			<div class="field_container">
+			
+				<div class="field_label">
+					<%= f.label :minutes, "Total Minutes" %>
+				</div>
+			
+				<div class="field">
+					<%= f.number_field :minutes, value: @minutes, max: 59, class: "form-control" %>
+				</div>
+			
+			</div>
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :moz_da, "Moz DA" %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :moz_da, class: "form-control", data: {'from' => @project.moz_da.to_i} %>
+			</div>
+			
+		</div>
+		
+		<div class="field_container">
+			
+			<div class="field_label">
+				<%= f.label :majestic_tf, "Majestic TF" %>
+			</div>
+			
+			<div class="field">
+				<%= f.text_field :majestic_tf, class: "form-control", data: {'from' => @project.majestic_tf.to_i} %>
+			</div>
+			
+		</div>
+		
+
+		
+		<!-- <div class="field_container text-center">
+
+			<div class="field_label">
+				<%#= f.label :notify_me_after, "Notify Me After This Many Domains Are Found" %>
+			</div>
+
+			<div class="field">
+				<%#= f.text_field :notify_me_after, class: "form-control" %>
+			</div>
+
+		</div> -->
+		
+		<!-- <div class="field_container text-center">
+
+			<div class="field_label">
+				<%#= label_tag "Link Depth" %>
+			</div>
+
+			<div class="field">
+				<label>
+					<%#= radio_button_tag :link_depth, "1", checked: true %>
+					<span class="radio_label"></span>
+				</label>
+				<label>
+					<%#= radio_button_tag :link_depth, "2" %>
+				</label>
+				<label>
+					<%#= radio_button_tag :link_depth, "3" %>
+				</label>
+			</div>
+
+		</div> -->
+		<% if @project.id.nil? %>
+		<div class="field_container text-center pink_form_submit_btn_container">
+			
+			<div class="field_label">
+				<%= f.submit "BEGIN REVIVING", class: 'btn teal_form_submit_btn' %>
+			</div>
+			
+		</div>
+		<% end %>
+		
+	<% end %>
+	
+</div>

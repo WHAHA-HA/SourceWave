@@ -1,0 +1,116 @@
+= render 'tracking'
+.main_page_container
+  .container-fluid.header_title_container
+    .row
+      .col-xs-12
+        .header_title_content
+          .header_glyph
+            span.glyphicon.glyphicon-stats aria-hidden="true"
+          .header_text
+            p This Weeks Daily Activity
+        = link_to 'Help & Support', 'https://www.facebook.com/groups/1557416241176094/', class: 'pull-right'
+  .container-fluid.container_section
+    .col-xs-12
+      = render 'minutes/used_minutes'
+    - if current_user.crawls.count <= 50
+      .col-lg-12.text-center
+        .panel.panel-success
+          h1 If You Are Having Trouble Finding Domains, Watch This!
+          / .panel-body
+          /   | Lorem ipsum dolo/r sit amet, consectetur adipisicing elit. Asperiores dolores est ex maxime similique sit vero! Ad atque, blanditiis commodi deserunt dolore explicabo, iusto laudantium magni molestias nam neque tenetur.
+          .panel-body
+            = render 'getting_started_videos'
+          .panel-body
+            = link_to 'Begin Your Free Month At Source University Here', 'http://source-wave.com/university/enrollment/?rid=p8S0Cx'       
+          .panel-body
+            = link_to 'Start Crawling', new_crawl_path, class:'btn btn-lg btn-success'
+
+  //.row
+      .col-xs-7
+        .row
+          .title_text
+            p DOMAINS FOUND THIS WEEK
+        .row
+      .col-xs-5
+        .row
+          .title_number
+            p 14
+          .title_text
+            p DOMAINS FOUND THIS WEEK
+        .row
+  //.container-fluid.container_section
+    .row
+      .col-xs-7
+        .row
+          .col-xs-4.nopadding
+            .row
+              .title_text
+                p ACTIVE PROJECTS
+            .row
+          .col-xs-4.nopadding
+            .row
+              .title_text
+                p URLS SCANNED TODAY
+            .row
+          .col-xs-4.nopadding
+            .row
+              .title_text
+                p DOMAINS FOUND TODAY
+            .row
+
+  // New
+  .container-fluid.container_section
+    .row
+      .col-xs-12
+        .row
+          .col-xs-3.text-center
+            .panel
+              .panel-body
+                .row
+                  .title_text
+                    p DOMAINS CRAWLED
+                  .row
+                    .stat_circle_container.glyph_pink
+                      = @dashboard.domains_crawled.to_i
+          // <%= @project.links.map(&:links).flatten.count %
+          .col-xs-3.text-center
+            .panel
+              .panel-body
+                .row
+                  .title_text
+                    p BROKEN DOMAINS FOUND
+                .row
+                  .stat_circle_container.glyph_blue
+                    = @dashboard.domains_broken.to_i
+          // <%= @project.pages.uniq.count %
+          .col-xs-3.text-center
+            .panel
+              .panel-body
+                .row
+                  .title_text
+                    p EXPIRED DOMAINS FOUND
+                .row
+                  .stat_circle_container.glyph_blue
+                    = @dashboard.domains_expired.to_i
+          // <%= @project.pages.where(internal: false, status_code: '0').uniq.count %
+          .col-xs-3.text-center
+            .panel
+              .panel-body
+                .row
+                  .title_text
+                    p Pending / Running / Done
+                .row
+                  .stat_circle_container.glyph_pink
+                    = @dashboard.pending_crawlers.to_i
+					|  / 
+					= @dashboard.running_crawlers.to_i 
+					|  / 
+					= @dashboard.done_crawlers.to_i 
+    /- if @total_running_jobs == 0
+    /  p DONE
+    /else
+    /  p RUNNING
+
+    // Top Domains
+
+    = render 'top_domains'

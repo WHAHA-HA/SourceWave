@@ -1,0 +1,1 @@
+$('#accordion' + "<%= @crawl_id %>").html("<%= escape_javascript( render partial: 'more_info', locals: { crawl_id: @crawl_id, url: params[:url] }) %>");

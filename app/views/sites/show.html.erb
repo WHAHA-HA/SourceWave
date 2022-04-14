@@ -1,0 +1,130 @@
+<div class="main_page_container">
+	
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+						
+					<%= render 'crawls/tabs', o: @site %>
+						
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid container_section">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="row">
+		
+					<div class="col-xs-3 nopadding text-center">
+					
+						<div class="row">
+							<div class="title_text">
+								<p>URLS FOUND</p>
+							</div>
+						</div>
+					
+						<div class="row">
+							<div class="stat_circle_container glyph_pink">
+								<%= @site.links.map(&:links).flatten.count %>
+							</div>
+						</div>
+					
+					</div>
+		
+					<div class="col-xs-3 nopadding text-center">
+					
+						<div class="row">
+							<div class="title_text">
+								<p>DOMAINS CRAWLED</p>
+							</div>
+						</div>
+					
+						<div class="row">
+							<div class="stat_circle_container glyph_blue">
+								<%= @site.pages.uniq.count %>
+							</div>
+						</div>
+					
+					</div>
+		
+					<div class="col-xs-3 nopadding text-center">
+					
+						<div class="row">
+							<div class="title_text">
+								<p>EXPIRED DOMAINS FOUND</p>
+							</div>
+						</div>
+					
+						<div class="row">
+							<div class="stat_circle_container glyph_blue">
+								<%= @site.pages.where(internal: false, status_code: '0').uniq.count %>
+							</div>
+						</div>
+					
+					</div>
+					
+					<div class="col-xs-3 nopadding text-center">
+					
+						<div class="row">
+							<div class="title_text">
+								<p>STATUS</p>
+							</div>
+						</div>
+					
+						<div class="row">
+							<div class="stat_circle_container glyph_pink">
+								<p><%= @site.gather_links_batch.status if @site.gather_links_batch %></p>
+							</div>
+						</div>
+					
+					</div>
+		
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid container_section">
+	
+		<div class="row">
+			
+			<div class="col-xs-7">
+
+				<div class="row">
+					<div class="title_text">
+						<p>PROJECT STATS</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<%= high_chart("stats_chart", @stats_chart) %>
+				</div>
+
+			</div>
+		
+			<div class="col-xs-5">
+			
+				<div class="row">
+					<!-- <div class="title_number">
+						<p>14</p>
+					</div> -->
+					<div class="title_text">
+						<p>TOP PRIMED DOMAINS</p>
+					</div>
+				</div>
+			
+				<div class="row">
+				
+				</div>
+			
+			</div>
+		
+		</div>
+	
+	</div>
+
+	
+	
+</div>

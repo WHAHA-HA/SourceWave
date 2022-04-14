@@ -1,0 +1,223 @@
+<div class="main_page_container">
+	
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+						
+					<!-- TABS -->
+					
+						<div class="tabbable-panel">
+						<div class="tabbable-line">
+							<ul class="nav nav-tabs ">
+			
+								<li class="active">
+									<%= link_to crawl_path_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-stats">
+											<span class="glyph_text">Dashboard</span>
+										</i>
+									<% end %>
+								</li>
+			
+								<li >
+									<%= link_to broken_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-ban-circle">
+											<span class="glyph_text">Broken</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li >
+									<%= link_to available_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-ok">
+											<span class="glyph_text">Available</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li>
+									<%= link_to bookmarked_sites_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-bookmark">
+											<span class="glyph_text">Bookmarked</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li>
+									<%= link_to edit_crawl_path(@project.id, 'processor_name' => @project.processor_name) do %>
+									    <i class="glyphicon glyphicon-bookmark">
+											<span class="glyph_text">Settings</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<% if @project.status != 'finished' %>
+									
+									<div class="pull-right">
+										<%= link_to 'Stop Crawl', stop_crawl_path(@project.id, 'processor_name' => @project.processor_name), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+									</div>
+									
+								<% else %>
+								
+									<div class="pull-right">
+										<%= link_to 'Delete Project', delete_crawl_path(@project.id, 'processor_name' => @project.processor_name), data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+									</div>
+									
+								<% end %>
+			
+							</ul>
+							
+
+							
+						</div>
+						
+					</div>
+					
+					<!-- TABS -->
+
+						
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid container_section">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="row">
+					
+					<% if @progress %>
+						<div class="progress">
+						  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%">
+						    <span class="sr-only"><%= @progress %> Complete</span>
+						  </div>
+						</div>
+					<% else %>
+						
+					<% end %>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class='container-fluid container_section'>
+		<div class='row'>
+					
+			<div class='col-xs-12 text-center'>
+						<div class='panel'>
+							<div class='panel-body'>
+								<div class='row'>
+
+									<div class='col-xs-3 dashboard_stats_container'>
+										<div class='title_text'>
+											<p>URLS FOUND</p>
+										</div>
+										<div class='row'>
+											<div class='stat_circle_container glyph_blue'>
+												<%= @urls_found.to_i %>
+											</div>
+										</div>
+									</div>
+									
+									<div class='col-xs-3 dashboard_stats_container'>
+										<div class='title_text'>
+											<p>BROKEN DOMAINS</p>
+										</div>
+										<div class='row'>
+											<div class='stat_circle_container glyph_blue'>
+												<%= @broken_domains.to_i %>
+											</div>
+										</div>
+									</div>
+									
+									<div class='col-xs-3 dashboard_stats_container'>
+										<div class='title_text'>
+											<p>EXPIRED DOMAINS</p>
+										</div>
+										<div class='row'>
+											<div class='stat_circle_container glyph_blue'>
+												<%= @expired_domains.to_i %>
+											</div>
+										</div>
+									</div>
+									
+									<div class='col-xs-3 dashboard_stats_container'>
+										
+
+										<div class="row">
+											<div class="title_text">
+												<% if @project.status.to_s == 'running' %>
+													<p>TIME RUNNING</p>
+												<% else %>
+													<p>STATUS</p>
+												<% end %>
+								
+											</div>
+										</div>
+					
+										<div class="row">
+											<div class="stat_circle_container glyph_blue">
+												<% if @project.status.to_s == 'running' %>
+													<%= content_tag "div", class: 'crawl_start_time', data: {start_time: (Time.now-@project.created_at).to_i} do %>
+													Loading...
+													<% end %>
+												<% else %>
+													<%= @project.status.to_s %>
+												<% end %>
+											</div>
+										</div>
+										
+
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+		</div>
+	</div>
+	
+	
+	<div class="container-fluid container_section">
+	
+			<div class="row">
+		
+				<div class="col-xs-12">
+			
+					<div class="row">
+					
+						<div class="panel panel-default">
+							<div class="panel-heading panel_blue_heading panel_glyph_container">
+							
+								<div class="header_glyph">
+									<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+								</div>
+								<div class="header_text">
+									<p>PROJECT STATS</p>
+								</div>
+							
+							</div>
+							<div class="panel-body">
+							
+								<%= high_chart("stats_chart", @stats_chart) %>
+							
+							</div>
+						</div>
+					
+					</div>
+			
+				</div>
+		
+			</div>
+	
+	</div>	
+
+	
+	<%= render 'top_domains' %>
+
+	<%= render 'sites_table' %>
+	
+</div>

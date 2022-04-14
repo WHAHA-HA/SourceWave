@@ -1,0 +1,8 @@
+- flash.each do |type, message|
+  .alert.alert-dismissable.fade.in class="#{error_class_for(type)}"
+    .row
+      .col-xs-12.col-md-4.col-md-offset-4
+        .text-center
+          button.close type="button" data-dismiss="alert" aria-hidden="true"
+            | &times;
+          = message

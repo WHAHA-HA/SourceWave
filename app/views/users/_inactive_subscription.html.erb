@@ -1,0 +1,45 @@
+<div class='panel-container'>
+  <div class="panel panel-default panel-success">
+    <div class='panel-heading panel_blue_heading white_text'>
+      <div class='row'>
+        <div class='col-xs-6 col-sm-6'>
+          <h3 class='panel-title'>Subscription Plan</h3>
+        </div>
+        <div class='col-xs-6 col-sm-6'>
+          <h3 class='pull-right panel-title'></h3>
+        </div>
+      </div>
+    </div>
+    <div class='panel-body'>
+      <div class='row'>
+        <div class='col-xs-6 col-sm-6'>
+          <h3>Missing Subscription</h3>
+        </div>
+        <div class='col-xs-6 col-sm-6'>
+          <h3 class='pull-right'>
+            $0.00
+          </h3>
+        </div>
+      </div>
+      <div class='limit-container'>
+        <div class='limit'>
+          <p>Minutes Available</p>
+          <p>0</p>
+        </div>
+        <div class='limit'>
+          <p>Crawls At Once</p>
+          <p>0</p>
+        </div>
+        <div class='limit'>
+          <p>Pages Per Crawl</p>
+          <p>0</p>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-12'>
+            <%= link_to 'Subscribe', upgrade_plan_path(missing_subscription: true), method: :get, class:'btn btn-success btn-lg btn-block' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+// Place all the styles related to the dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.dashboard_tutorial_link {
+	font-weight: bold;
+	margin: 10px 0px;
+	display: inline-block;
+}
+
+.tutorial{
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.tutorial img{
+  margin-right: 20px;
+}
+
+.tutorial:last-child{
+  border: none;
+}
+
+.tutorial a{
+}
+
+.tutorial .length{
+  margin-top: 10px;
+  float: right;
+  color: #bdbdbd;
+}

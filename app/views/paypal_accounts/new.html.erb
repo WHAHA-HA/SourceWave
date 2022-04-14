@@ -1,0 +1,72 @@
+<div class="main_page_container">
+	<div class='container-fluid header_title_container'>
+		<div class='row'>
+			<div class='col-xs-12'>
+				<div class="header_title_content">
+					<div class='header_glyph'>
+						<span class='glyphicon glyphicon-stats' aria-hidden="true"></span>
+					</div>
+					<div class='header_text'>
+						<p>Connect Paypal Account</p>
+					</div>
+				</div>
+				
+				<%#= link_to 'Help & Support', 'http://source-wave.com/support', class: 'pull-right' %>
+				
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<%= content_tag :div, notice, class: 'bg-success' %>
+		<%= content_tag :div, alert, class: 'bg-danger' %>
+	</div>
+	
+	<div class='account-container'>
+		<div class='row'>
+			<div class='col-lg-12'>
+				
+				<div class='row'>
+					<div class='panel-container'>
+						<div class='panel panel-default panel-success'>
+							<div class='panel-heading panel_blue_heading white_text'>
+								<h3 class='panel-title'>Paypal Email</h3>
+							</div>
+							<div class='panel-body'>
+								<%= form_for current_user, url: {controller: 'paypal_accounts', action: 'create'}, :html => {class: 'form'}, method: :post do |f| %>
+								
+								<%= f.hidden_field :domain_id, :value => params['domain_id'] %>
+								<%= f.hidden_field :processor_name, :value => params['processor_name'] %>
+								<%= f.hidden_field :crawl_id, :value => params['crawl_id'] %>
+									
+									<div class='row'>
+										<div class='col-lg-12'>
+											<div class='form-group'>
+												<%= f.label :paypal_email %>
+												<%= f.email_field :paypal_email, :autofocus => true, placeholder: 'email@paypal.com', class: 'form-control' %>
+											</div>
+										</div>
+									</div>
+									
+									<div class='row'>
+										<div class='form-group'>
+											<div class='col-lg-12'>
+												<%= f.submit class:'btn btn-success btn-block' %>
+											</div>
+										</div>
+									</div>
+									
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+	
+	
+	
+</div>

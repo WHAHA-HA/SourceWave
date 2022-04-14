@@ -1,0 +1,47 @@
+	<div class="container-fluid container_section">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="panel panel-success panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							<div class='header_text'>
+								<p>Edit Domain</p>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="new_project_form_container">
+	
+								<%= form_for @domain, url: {controller: 'domains_for_sale', action: 'update'}, method: :put do |f| %>
+									
+									<div class="field_container">
+			
+										<div class="field_label">
+											<%= f.label :price, 'Price' %>
+										</div>
+			
+										<div class="field">
+											<%= f.text_field :price, class: "form-control" %>
+										</div>
+			
+									</div>
+									
+									<div class="field_container text-center pink_form_submit_btn_container">
+			
+										<div class="btn-block start_crawling_btn">
+											<%= f.submit "Edit", class: 'btn btn-lg btn-block btn-success start_crawling_btn_link' %>
+										</div>
+			
+									</div>
+
+								<% end %>
+	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+

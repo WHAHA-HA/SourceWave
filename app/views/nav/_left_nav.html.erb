@@ -1,0 +1,27 @@
+<ul class="left_nav_container">
+	
+	<li class=<%= 'active' if current_page?(dashboard_path) %> >
+		<%= link_to dashboard_path do %>
+		    <i class="glyphicon glyphicon-home">
+				<span class="glyph_text">Home</span>
+			</i>
+		<% end %>
+	</li>
+
+	<li class=<%= 'active' if current_page?(new_project_path) %> >
+		<%= link_to new_project_path do %>
+		    <i class="glyphicon glyphicon-plus">
+				<span class="glyph_text">New</span>
+			</i>
+		<% end %>
+	</li>
+
+	<li class=<%= 'active' if current_page?(crawls_path) %> >
+		<%= link_to crawls_path do %>
+		    <i class="glyphicon glyphicon-folder-open">
+				<span class="glyph_text">Projects</span>
+			</i>
+		<% end %>
+	</li>
+
+</ul>

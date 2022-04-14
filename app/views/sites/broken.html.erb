@@ -1,0 +1,140 @@
+<div class="main_page_container">
+	
+	<div class="container-fluid header_title_container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header_title_content">
+						
+					<!-- TABS -->
+					
+						<div class="tabbable-panel">
+						<div class="tabbable-line">
+							<ul class="nav nav-tabs ">
+			
+								<li>
+									<%= link_to crawl_path_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-stats">
+											<span class="glyph_text">Dashboard</span>
+										</i>
+									<% end %>
+								</li>
+			
+								<li class="active">
+									<%= link_to broken_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-ban-circle">
+											<span class="glyph_text">Broken</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li >
+									<%= link_to available_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-ok">
+											<span class="glyph_text">Available</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li>
+									<%= link_to bookmarked_sites_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-bookmark">
+											<span class="glyph_text">Bookmarked</span>
+										</i>
+									<% end %>
+								</li>
+								
+								<li>
+									<%= link_to edit_crawl_path(params[:id], 'processor_name' => @crawl.processor_name) do %>
+									    <i class="glyphicon glyphicon-bookmark">
+											<span class="glyph_text">Settings</span>
+										</i>
+									<% end %>
+								</li>
+			
+							</ul>
+							
+
+							
+						</div>
+						
+					</div>
+					
+					<!-- TABS -->
+
+						
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid container_section">
+	
+		<div class="row">
+		
+			<div class="col-xs-12">
+			
+				<div class="row">
+					
+					<div class="panel panel-round">
+						<div class="panel-heading panel_blue_heading panel_glyph_container">
+							<div class="header_glyph">
+								<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+							</div>
+							<div class="header_text">
+								<p>Found Broken Domains</p>
+							</div>
+						</div>
+						<div class="panel-body">
+							
+							<table class="table table-hover table-striped">
+								
+								<thead>
+									<tr>
+										<!-- <th></th> -->
+										<th>DOMAIN</th>
+										<th>FOUND ON</th>
+										<!-- <th>TF</th>
+										<th>D/A</th>
+										<th>L</th>
+										<th>D</th> -->
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+									<% @pages.each do |i| %>
+										<tr>
+											<!-- <td>
+												<span class="glyphicon glyphicon-trash glyph_pink" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+											</td> -->
+											<td><%= i.url %></td>
+											<td><%= i.found_on %></td>
+											<!-- <td>-</td>
+											<td>-</td>
+											<td>-</td>
+											<td>-</td> -->
+										</tr>
+									<% end %>
+									
+									
+								</tbody>
+								
+							</table>
+							
+							<div class="will_paginate_container text-center">
+								<%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+			
+			</div>
+		
+		</div>
+	
+	</div>
+
+</div>

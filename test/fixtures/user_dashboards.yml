@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  domains_crawled: 1
+  domains_broken: 1
+  domains_expired: 1
+  pending_crawlers: 1
+  running_crawlers: 1
+
+two:
+  user_id: 
+  domains_crawled: 1
+  domains_broken: 1
+  domains_expired: 1
+  pending_crawlers: 1
+  running_crawlers: 1

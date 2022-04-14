@@ -1,0 +1,2 @@
+$('#edit-user-modal .modal-body').html("<%= escape_javascript( render partial: 'user_form', locals: { user: @user }) %>");
+$('#edit-user-modal').modal('show');

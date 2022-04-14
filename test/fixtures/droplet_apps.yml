@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  url: MyText
+  crawl_id: 1
+  status: MyString
+  started_at: 2015-12-22 22:56:45
+  paused_at: 2015-12-22 22:56:45
+  finished_at: 2015-12-22 22:56:45
+  batch_id: MyString
+  verified: MyString
+  pos: 1
+  position: 1
+  shutdown: false
+  librator_user: MyString
+  librato_token: MyString
+  formation: 
+  db_url: MyString
+  db_user: MyString
+  db_pass: MyString
+  db_host: MyString
+  db_port: MyString
+  db_name: MyString
+  user_id: 1
+  droplet_name: MyString
+
+two:
+  name: MyString
+  url: MyText
+  crawl_id: 1
+  status: MyString
+  started_at: 2015-12-22 22:56:45
+  paused_at: 2015-12-22 22:56:45
+  finished_at: 2015-12-22 22:56:45
+  batch_id: MyString
+  verified: MyString
+  pos: 1
+  position: 1
+  shutdown: false
+  librator_user: MyString
+  librato_token: MyString
+  formation: 
+  db_url: MyString
+  db_user: MyString
+  db_pass: MyString
+  db_host: MyString
+  db_port: MyString
+  db_name: MyString
+  user_id: 1
+  droplet_name: MyString
